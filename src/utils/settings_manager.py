@@ -1,13 +1,17 @@
-from src.settings.settings import Settings
 import os
 import json
+from src.models.settings_model import SettingsModel
+from src.abstract_models.abstract_logic import AbstractLogic
+from src.utils.castom_exceptions import ArgumentTypeException, EmptyException
+
 """
 Менеджер настроек
 """
 
-class SettingsManager:
-    __file_name = "settings.json"
-    __settings: Settings = None
+
+class SettingsManager(AbstractLogic):
+    __file_name: str = "settings.json"
+    __settings: SettingsModel = None
 
     def __new__(cls):
         if not hasattr(cls, 'instance'):
@@ -22,9 +26,9 @@ class SettingsManager:
     Открыть и загрузить настройки
     """
 
-    def open(self, file_name: str = ""):
+    def open(self, file_name: str = "") -> bool:
         if not isinstance(file_name, str):
-            raise TypeError("Имя файла долно быть передано в формате строки!")
+            raise ArgumentTypeException("file_name", "str")
 
         if file_name != "":
             self.__file_name = file_name
@@ -36,8 +40,9 @@ class SettingsManager:
             self.convert(data)
 
             return True
-        except:
+        except Exception as ex:
             self.__settings = self.__default_setting()
+            self.set_exception(ex)
             return False
 
     """
@@ -46,7 +51,7 @@ class SettingsManager:
 
     def convert(self, dict: dict):
         if dict is None:
-            raise AttributeError("Данные для заполнения отсутствуют!")
+            raise EmptyException()
         for key, value in dict.items():
             if hasattr(self.__settings, key):
                 setattr(self.__settings, key, value)
@@ -56,15 +61,15 @@ class SettingsManager:
     """
 
     @property
-    def settings(self):
+    def settings(self) -> SettingsModel:
         return self.__settings
 
     """
     Набор настроек по умолчанию
     """
 
-    def __default_setting(self):
-        data = Settings()
+    def __default_setting(self) -> SettingsModel:
+        data = SettingsModel()
         data.inn = "380080920202"
         data.organization_name = "Рога и копыта (default)"
         data.account = "12345678900"
@@ -73,3 +78,6 @@ class SettingsManager:
         data.organization_type = "11111"
 
         return data
+
+    def set_exception(self, ex: Exception):
+        self._inner_set_exception(ex)
