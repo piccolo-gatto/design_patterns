@@ -58,5 +58,6 @@ class NomenclatureModel(AbstractReference):
 
         self.__group = value
 
+
     def set_compare_mode(self, other_object) -> bool:
         return super().set_compare_mode(other_object)

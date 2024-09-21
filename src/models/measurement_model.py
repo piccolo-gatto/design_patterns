@@ -40,5 +40,23 @@ class MeasurementModel(AbstractReference):
 
         self.__coefficient = value
 
+    @staticmethod
+    def default_group_gram():
+        item = MeasurementModel()
+        item.name = "гр"
+        return item
+
+    @staticmethod
+    def default_group_piece():
+        item = MeasurementModel()
+        item.name = "шт"
+        return item
+
+    @staticmethod
+    def default_group_milliliter():
+        item = MeasurementModel()
+        item.name = "мл"
+        return item
+
     def set_compare_mode(self, other_object) -> bool:
         return super().set_compare_mode(other_object)
