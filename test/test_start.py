@@ -24,7 +24,7 @@ class TestDataRepository(unittest.TestCase):
         service = StartService(data_repository, settings)
         service.create()
 
-        assert len(data_repository.data[data_repository.nomenclature_key()]) == 0
+        assert len(data_repository.data[data_repository.nomenclature_key()]) > 0
         assert len(data_repository.data[data_repository.nomenclature_group_key()]) == 2
         assert len(data_repository.data[data_repository.measurement_key()]) == 3
         assert len(data_repository.data[data_repository.recipe_key()]) == 2

@@ -67,39 +67,6 @@ class RecipeModel(AbstractReference):
 
         self.__process = value
 
-    def get_recipe_from_file(self, file: str):
-        with (open(file, 'r') as f):
-            lines = f.read()
-            self.name = re.search(r'#{1,1} (.+)', lines).group(1).strip()
-            self.count = int(re.search(r'#{4,4} `(.+) ', lines).group(1).strip())
-            self.minutes = int(re.search(r'Время приготовления: `(.+) ', lines).group(1).strip())
-            ingredients_data = re.search(r'\| Ингредиенты\s+\|\s+Граммовка \|\n\|\W+\|\W+(\|.+)\n##', lines,
-                                         re.DOTALL).group(1).strip()
-            for row in ingredients_data.split('\n'):
-                cols = row.split('|')
-                nomen = NomenclatureModel()
-                nomen.name = cols[1]
-                measurement = MeasurementModel()
-                count, measurement.name = cols[2].strip().split(" ")
-                nomen.measurement = measurement
-                self.ingredients.append({'nomenclature': nomen, 'count': int(count)})
-            process_data = re.search(r'## ПОШАГОВОЕ ПРИГОТОВЛЕНИЕ\nВремя приготовления: `\d+ мин`\n(.+)', lines,
-                                     re.DOTALL).group(1).strip()
-            for row in re.split(r'\d+\. ', process_data):
-                if row != "":
-                    self.process.append(row)
-
-    @staticmethod
-    def default_recipe_waffles():
-        item = RecipeModel()
-        item.get_recipe_from_file("../data/recipe1.md")
-        return item
-
-    @staticmethod
-    def default_recipe_pancakes():
-        item = RecipeModel()
-        item.get_recipe_from_file("../data/recipe2.md")
-        return item
 
     def set_compare_mode(self, other_object) -> bool:
         return super().set_compare_mode(other_object)

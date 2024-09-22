@@ -4,6 +4,7 @@ from src.utils.data_repository import DataRepository
 from src.models.nomenclature_group_model import NomenclatureGroupModel
 from src.models.measurement_model import MeasurementModel
 from src.models.nomenclature_model import NomenclatureModel
+from src.utils.recipe_manager import RecipeManager
 from src.models.recipe_model import RecipeModel
 from src.utils.settings_manager import SettingsManager
 from src.models.settings_model import SettingsModel
@@ -59,8 +60,11 @@ class StartService(AbstractLogic):
 
     def __create_recipes(self):
         list = []
-        list.append(RecipeModel.default_recipe_waffles())
-        list.append(RecipeModel.default_recipe_pancakes())
+        manager = RecipeManager()
+        manager.open()
+        list.append(manager.recipe)
+        manager.open("../data/recipe2.md")
+        list.append(manager.recipe)
         self.__reposity.data[DataRepository.recipe_key()] = list
 
     """
@@ -68,7 +72,12 @@ class StartService(AbstractLogic):
     """
 
     def __create_nomenclature(self):
-        self.__reposity.data[DataRepository.nomenclature_key()] = []
+        list = []
+        for recipe in self.__reposity.data[DataRepository.recipe_key()]:
+            for ingredient in recipe.ingredients:
+                if ingredient['nomenclature'] not in list:
+                    list.append(ingredient['nomenclature'])
+        self.__reposity.data[DataRepository.nomenclature_key()] = list
 
     """
     Первый старт
@@ -77,8 +86,8 @@ class StartService(AbstractLogic):
     def create(self):
         self.__create_nomenclature_groups()
         self.__create_measurements()
-        self.__create_nomenclature()
         self.__create_recipes()
+        self.__create_nomenclature()
 
     """
     Перегрузка абстрактного метода

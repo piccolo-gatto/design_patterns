@@ -60,4 +60,7 @@ class NomenclatureModel(AbstractReference):
 
 
     def set_compare_mode(self, other_object) -> bool:
-        return super().set_compare_mode(other_object)
+        if other_object is None: return False
+        if not isinstance(other_object, AbstractReference): return False
+
+        return self.__name == other_object.name
