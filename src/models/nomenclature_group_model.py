@@ -16,5 +16,17 @@ class NomenclatureGroupModel(AbstractReference):
 
         self.__name = value
 
+    @staticmethod
+    def default_group_source():
+        item = NomenclatureGroupModel()
+        item.name = "Сырье"
+        return item
+
+    @staticmethod
+    def default_group_cold():
+        item = NomenclatureGroupModel()
+        item.name = "Заморозка"
+        return item
+
     def set_compare_mode(self, other_object) -> bool:
         return super().set_compare_mode(other_object)
