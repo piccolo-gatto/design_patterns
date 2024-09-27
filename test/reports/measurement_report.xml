@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<report>
+  <row>
+    <base>None</base>
+    <coefficient>1</coefficient>
+    <name>гр</name>
+    <unique_code>729030be7ce011ef8b2970a8d3344cb0</unique_code>
+  </row>
+  <row>
+    <base>None</base>
+    <coefficient>1</coefficient>
+    <name>мл</name>
+    <unique_code>729030be7ce011ef8b2970a8d3344cb0</unique_code>
+  </row>
+  <row>
+    <base>None</base>
+    <coefficient>1</coefficient>
+    <name>шт</name>
+    <unique_code>729030be7ce011ef8b2970a8d3344cb0</unique_code>
+  </row>
+</report>

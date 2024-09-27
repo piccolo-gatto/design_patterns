@@ -1,8 +1,14 @@
 import os
 import json
+from src.reports.markdown_report import MDReport
+from src.reports.csv_report import CSVReport
+from src.reports.json_report import JSONReport
+from src.reports.xml_report import XMLReport
+from src.reports.rtf_report import RTFReport
 from src.models.settings_model import SettingsModel
+from src.utils.format_reporting import FormatReporting
 from src.abstract_models.abstract_logic import AbstractLogic
-from src.utils.castom_exceptions import ArgumentTypeException, EmptyException
+from src.utils.castom_exceptions import ArgumentTypeException, EmptyException, UnknownValueException
 
 """
 Менеджер настроек
@@ -12,6 +18,13 @@ from src.utils.castom_exceptions import ArgumentTypeException, EmptyException
 class SettingsManager(AbstractLogic):
     __file_name: str = "settings.json"
     __settings: SettingsModel = None
+    __report_formats = {
+        "CSV": CSVReport,
+        "MARKDOWN": MDReport,
+        "JSON": JSONReport,
+        "XML": XMLReport,
+        "RTF": RTFReport
+    }
 
     def __new__(cls):
         if not hasattr(cls, 'instance'):
@@ -64,6 +77,10 @@ class SettingsManager(AbstractLogic):
     def settings(self) -> SettingsModel:
         return self.__settings
 
+    @property
+    def report_formats(self) -> dict:
+        return self.__report_formats
+
     """
     Набор настроек по умолчанию
     """
@@ -78,6 +95,19 @@ class SettingsManager(AbstractLogic):
         data.organization_type = "11111"
 
         return data
+
+    def report_type(self, format: FormatReporting = None):
+        if isinstance(format, FormatReporting):
+            raise ArgumentTypeException("format", "FormatReporting")
+
+        if format is None:
+            format = self.__settings.report
+        try:
+            report_class = self.report_formats.get(format.name, None)
+            return report_class()
+
+        except:
+            raise UnknownValueException()
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)

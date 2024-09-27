@@ -1,0 +1,8 @@
+full_name;group;measurement;name;unique_code;
+;None;<src.models.measurement_model.MeasurementModel object at 0x0000023624A74410>;Пшеничная мука;729030be7ce011ef8b2970a8d3344cb0;
+;None;<src.models.measurement_model.MeasurementModel object at 0x0000023624A74500>;Сахар;729030be7ce011ef8b2970a8d3344cb0;
+;None;<src.models.measurement_model.MeasurementModel object at 0x0000023624A74320>;Сливочное масло;729030be7ce011ef8b2970a8d3344cb0;
+;None;<src.models.measurement_model.MeasurementModel object at 0x0000023624A74560>;Яйца;729030be7ce011ef8b2970a8d3344cb0;
+;None;<src.models.measurement_model.MeasurementModel object at 0x0000023624A74590>;Ванилин(щепотка);729030be7ce011ef8b2970a8d3344cb0;
+;None;<src.models.measurement_model.MeasurementModel object at 0x0000023624A74A70>;Соль;729030be7ce011ef8b2970a8d3344cb0;
+;None;<src.models.measurement_model.MeasurementModel object at 0x0000023624A74B60>;Молоко;729030be7ce011ef8b2970a8d3344cb0;

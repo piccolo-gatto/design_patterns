@@ -1,0 +1,5 @@
+|base|coefficient|name|unique_code|
+|---|---|---|---|
+|None|1|гр|729030be7ce011ef8b2970a8d3344cb0|
+|None|1|мл|729030be7ce011ef8b2970a8d3344cb0|
+|None|1|шт|729030be7ce011ef8b2970a8d3344cb0|

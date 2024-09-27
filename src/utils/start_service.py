@@ -75,8 +75,8 @@ class StartService(AbstractLogic):
         list = []
         for recipe in self.__reposity.data[DataRepository.recipe_key()]:
             for ingredient in recipe.ingredients:
-                if ingredient['nomenclature'] not in list:
-                    list.append(ingredient['nomenclature'])
+                if ingredient.nomenclature not in list:
+                    list.append(ingredient.nomenclature)
         self.__reposity.data[DataRepository.nomenclature_key()] = list
 
     """

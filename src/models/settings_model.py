@@ -1,4 +1,5 @@
-from src.utils.castom_exceptions import ArgumentLengthException, ArgumentTypeException
+from src.utils.castom_exceptions import ArgumentLengthException, UnknownValueException, ArgumentTypeException
+from src.utils.format_reporting import FormatReporting
 
 """
 Настройки
@@ -12,6 +13,7 @@ class SettingsModel:
     __correspondent_account: str = ""
     __bic: str = ""
     __organization_type: str = ""
+    __report: FormatReporting = FormatReporting.CSV
 
     @property
     def organization_name(self) -> str:
@@ -88,3 +90,13 @@ class SettingsModel:
             raise ArgumentLengthException("organization_type", 5)
 
         self.__organization_type = value
+
+    @property
+    def report(self):
+        return self.__report
+
+    @report.setter
+    def report(self, value: FormatReporting):
+        if not isinstance(value, FormatReporting):
+            raise ArgumentTypeException("value", "FormatReporting")
+        self.__report = value
