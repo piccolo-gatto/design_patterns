@@ -23,13 +23,6 @@ class ReportFactory(AbstractLogic):
     __reports: dict = {}
     __settings_manager: SettingsManager = None
     __reports_setting: dict = {}
-    __formats: dict = {
-        "CSV": CSVReport,
-        "MARKDOWN": MDReport,
-        "JSON": JSONReport,
-        "XML": XMLReport,
-        "RTF": RTFReport
-    }
 
     def __init__(self, manager: SettingsManager) -> None:
         super().__init__()
