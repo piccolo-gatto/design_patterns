@@ -9,7 +9,7 @@ from src.utils.castom_exceptions import ArgumentTypeException, ArgumentMaxLength
 
 
 class AbstractReference(ABC):
-    __unique_code: str = uuid.uuid1()
+    __unique_code: str = uuid.uuid1().hex
     __name = ""
 
     """

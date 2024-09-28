@@ -1,0 +1,20 @@
+[
+  {
+    "base": null,
+    "coefficient": 1,
+    "name": "гр",
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
+  },
+  {
+    "base": null,
+    "coefficient": 1,
+    "name": "мл",
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
+  },
+  {
+    "base": null,
+    "coefficient": 1,
+    "name": "шт",
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
+  }
+]

@@ -1,0 +1,357 @@
+[
+  {
+    "count": 10,
+    "ingredients": [
+      {
+        "count": 100,
+        "measurement": {
+          "base": null,
+          "coefficient": 1,
+          "name": "гр",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "name": "Пшеничная мука",
+        "nomenclature": {
+          "full_name": "",
+          "group": {
+            "name": "Сырье",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "measurement": {
+            "base": null,
+            "coefficient": 1,
+            "name": "гр",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "name": "Пшеничная мука",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "count": 80,
+        "measurement": {
+          "base": null,
+          "coefficient": 1,
+          "name": "гр",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "name": "Сахар",
+        "nomenclature": {
+          "full_name": "",
+          "group": {
+            "name": "Сырье",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "measurement": {
+            "base": null,
+            "coefficient": 1,
+            "name": "гр",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "name": "Сахар",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "count": 70,
+        "measurement": {
+          "base": null,
+          "coefficient": 1,
+          "name": "гр",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "name": "Сливочное масло",
+        "nomenclature": {
+          "full_name": "",
+          "group": {
+            "name": "Сырье",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "measurement": {
+            "base": null,
+            "coefficient": 1,
+            "name": "гр",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "name": "Сливочное масло",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "count": 1,
+        "measurement": {
+          "base": null,
+          "coefficient": 1,
+          "name": "шт",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "name": "Яйца",
+        "nomenclature": {
+          "full_name": "",
+          "group": {
+            "name": "Сырье",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "measurement": {
+            "base": null,
+            "coefficient": 1,
+            "name": "шт",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "name": "Яйца",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "count": 5,
+        "measurement": {
+          "base": null,
+          "coefficient": 1,
+          "name": "гр",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "name": "Ванилин(щепотка)",
+        "nomenclature": {
+          "full_name": "",
+          "group": {
+            "name": "Сырье",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "measurement": {
+            "base": null,
+            "coefficient": 1,
+            "name": "гр",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "name": "Ванилин(щепотка)",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      }
+    ],
+    "minutes": 20,
+    "name": "ВАФЛИ ХРУСТЯЩИЕ В ВАФЕЛЬНИЦЕ",
+    "process": [
+      {
+        "content": "Как испечь вафли хрустящие в вафельнице? Подготовьте необходимые продукты. Из данного количества у меня получилось 8 штук диаметром около 10 см.",
+        "name": "1",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "Масло положите в сотейник с толстым дном. Растопите его на маленьком огне на плите, на водяной бане либо в микроволновке.",
+        "name": "2",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "Добавьте в теплое масло сахар. Перемешайте венчиком до полного растворения сахара. От тепла сахар довольно быстро растает.",
+        "name": "3",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "Добавьте в масло яйцо. Предварительно все-таки проверьте масло, не горячее ли оно, иначе яйцо может свариться. Перемешайте яйцо с маслом до однородности.",
+        "name": "4",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "Всыпьте муку, добавьте ванилин.",
+        "name": "5",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "Перемешайте массу венчиком до состояния гладкого однородного теста.",
+        "name": "6",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "Разогрейте вафельницу по инструкции к ней. У меня очень старая, еще советских времен электровафельница. Она может и не очень красивая, но печет замечательно!\n   Я не смазываю вафельницу маслом, в тесте достаточно жира, да и к ней уже давно ничего не прилипает. Но вы смотрите по своей модели. Выкладывайте тесто по столовой ложке.\n   Можно класть немного меньше теста, тогда вафли будут меньше и их получится больше.",
+        "name": "7",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "Пеките вафли несколько минут до золотистого цвета. Осторожно откройте вафельницу, она очень горячая! Снимите вафлю лопаткой. Горячая она очень мягкая, как блинчик.",
+        "name": "8",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      }
+    ],
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
+  },
+  {
+    "count": 20,
+    "ingredients": [
+      {
+        "count": 300,
+        "measurement": {
+          "base": null,
+          "coefficient": 1,
+          "name": "гр",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "name": "Пшеничная мука",
+        "nomenclature": {
+          "full_name": "",
+          "group": {
+            "name": "Сырье",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "measurement": {
+            "base": null,
+            "coefficient": 1,
+            "name": "гр",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "name": "Пшеничная мука",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "count": 30,
+        "measurement": {
+          "base": null,
+          "coefficient": 1,
+          "name": "гр",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "name": "Сахар",
+        "nomenclature": {
+          "full_name": "",
+          "group": {
+            "name": "Сырье",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "measurement": {
+            "base": null,
+            "coefficient": 1,
+            "name": "гр",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "name": "Сахар",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "count": 5,
+        "measurement": {
+          "base": null,
+          "coefficient": 1,
+          "name": "гр",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "name": "Соль",
+        "nomenclature": {
+          "full_name": "",
+          "group": {
+            "name": "Сырье",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "measurement": {
+            "base": null,
+            "coefficient": 1,
+            "name": "гр",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "name": "Соль",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "count": 2,
+        "measurement": {
+          "base": null,
+          "coefficient": 1,
+          "name": "шт",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "name": "Яйца",
+        "nomenclature": {
+          "full_name": "",
+          "group": {
+            "name": "Сырье",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "measurement": {
+            "base": null,
+            "coefficient": 1,
+            "name": "шт",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "name": "Яйца",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "count": 700,
+        "measurement": {
+          "base": null,
+          "coefficient": 1,
+          "name": "мл",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "name": "Молоко",
+        "nomenclature": {
+          "full_name": "",
+          "group": {
+            "name": "Сырье",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "measurement": {
+            "base": null,
+            "coefficient": 1,
+            "name": "мл",
+            "unique_code": "bcf752be7d4411ef90d35103db83216c"
+          },
+          "name": "Молоко",
+          "unique_code": "bcf752be7d4411ef90d35103db83216c"
+        },
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      }
+    ],
+    "minutes": 50,
+    "name": "БЛИНЫ",
+    "process": [
+      {
+        "content": "Продукты для блинов перед вами.",
+        "name": "1",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "В глубокую миску разбить яйца, добавить сахар и соль.",
+        "name": "2",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "Тщательно взбить яйца с сахаром при помощи венчика или миксера. Затем добавить молоко. Хорошо взбить смесь.",
+        "name": "3",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "Просеять муку. Небольшими порциями добавлять муку, хорошо взбивая блинное тесто венчиком, чтобы не было комков.",
+        "name": "4",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "Затем добавить растительное масло. Перемешать.",
+        "name": "5",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "Хорошо разогреть сковороду, первый раз налить 1 ч. ложку растительного масла и распределить его по сковороде (удобно силиконовой кисточкой). Налить тесто на сковороду (половину или 2/3 половника, зависит от размера сковороды). Быстро вращая сковороду, распределить тесто тонким слоем по дну сковородки. Печь тонкий блин на среднем огне с одной стороны 1-2 минуты, до румяности.",
+        "name": "6",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      },
+      {
+        "content": "Затем перевернуть и печь блин с другой стороны еще примерно 0,5 минуты.",
+        "name": "7",
+        "unique_code": "bcf752be7d4411ef90d35103db83216c"
+      }
+    ],
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
+  }
+]

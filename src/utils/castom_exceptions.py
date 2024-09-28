@@ -24,3 +24,9 @@ class EmptyException(BaseException):
     def __init__(self):
         self.__message = f"Данные отсутствуют!"
         return super().__init__(self.__message)
+
+
+class UnknownValueException(BaseException):
+    def __init__(self):
+        self.__message = f"Неизвестные данные!"
+        return super().__init__(self.__message)
