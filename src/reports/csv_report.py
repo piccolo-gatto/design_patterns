@@ -11,7 +11,9 @@ class CSVReport(AbstractReport):
 
     def __init__(self) -> None:
         super().__init__()
-        self.__format = FormatReporting.CSV
+        self.__format: int = FormatReporting.CSV
+
+
 
     def create(self, data: list):
         if not isinstance(data, list):

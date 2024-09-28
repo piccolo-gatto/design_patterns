@@ -15,6 +15,7 @@ class XMLReport(AbstractReport):
         super().__init__()
         self.__format = FormatReporting.XML
 
+
     def create(self, data: list):
         if not isinstance(data, list):
             raise ArgumentTypeException("data", "list")

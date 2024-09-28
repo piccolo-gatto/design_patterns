@@ -3,12 +3,16 @@ from src.abstract_models.abstract_report import AbstractReport
 from src.utils.format_reporting import FormatReporting
 from src.utils.settings_manager import SettingsManager
 from src.models.settings_model import SettingsModel
-from src.reports.markdown_report import MDReport
 from src.reports.csv_report import CSVReport
+from src.reports.markdown_report import MDReport
 from src.reports.json_report import JSONReport
 from src.reports.xml_report import XMLReport
 from src.reports.rtf_report import RTFReport
 from src.utils.castom_exceptions import ArgumentTypeException, UnknownValueException
+import inspect
+import sys
+import src.reports as reports
+import os
 
 """
 Фабрика для формирования отчетов
@@ -19,16 +23,22 @@ class ReportFactory(AbstractLogic):
     __reports: dict = {}
     __settings_manager: SettingsManager = None
     __reports_setting: dict = {}
+    __formats: dict = {
+        "CSV": CSVReport,
+        "MARKDOWN": MDReport,
+        "JSON": JSONReport,
+        "XML": XMLReport,
+        "RTF": RTFReport
+    }
 
     def __init__(self, manager: SettingsManager) -> None:
         super().__init__()
         self.__settings_manager = manager
         # Наборы отчетов
-        self.__reports[FormatReporting.CSV] = CSVReport
-        self.__reports[FormatReporting.MARKDOWN] = MDReport
-        self.__reports[FormatReporting.JSON] = JSONReport
-        self.__reports[FormatReporting.XML] = XMLReport
-        self.__reports[FormatReporting.RTF] = RTFReport
+        for key, value in manager.settings.report_formats.items():
+            for cls in AbstractReport.__subclasses__():
+                if value == cls.__name__:
+                    self.__reports[key] = cls
 
     @property
     def reports(self) -> dict:
@@ -64,7 +74,7 @@ class ReportFactory(AbstractLogic):
         return report()
 
     def get_formats(self):
-        for key, value in self.__settings_manager.report_formats.items():
+        for key, value in self.__settings_manager.settings.report_formats.items():
             self.reports_setting[FormatReporting[key]] = value
 
     def create_default(self):

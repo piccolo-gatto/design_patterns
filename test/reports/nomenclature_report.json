@@ -1,86 +1,107 @@
 [
   {
     "full_name": "",
-    "group": null,
+    "group": {
+      "name": "Сырье",
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
+    },
     "measurement": {
       "base": null,
       "coefficient": 1,
       "name": "гр",
-      "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
     },
     "name": "Пшеничная мука",
-    "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
   },
   {
     "full_name": "",
-    "group": null,
+    "group": {
+      "name": "Сырье",
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
+    },
     "measurement": {
       "base": null,
       "coefficient": 1,
       "name": "гр",
-      "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
     },
     "name": "Сахар",
-    "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
   },
   {
     "full_name": "",
-    "group": null,
+    "group": {
+      "name": "Сырье",
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
+    },
     "measurement": {
       "base": null,
       "coefficient": 1,
       "name": "гр",
-      "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
     },
     "name": "Сливочное масло",
-    "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
   },
   {
     "full_name": "",
-    "group": null,
+    "group": {
+      "name": "Сырье",
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
+    },
     "measurement": {
       "base": null,
       "coefficient": 1,
       "name": "шт",
-      "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
     },
     "name": "Яйца",
-    "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
   },
   {
     "full_name": "",
-    "group": null,
+    "group": {
+      "name": "Сырье",
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
+    },
     "measurement": {
       "base": null,
       "coefficient": 1,
       "name": "гр",
-      "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
     },
     "name": "Ванилин(щепотка)",
-    "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
   },
   {
     "full_name": "",
-    "group": null,
+    "group": {
+      "name": "Сырье",
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
+    },
     "measurement": {
       "base": null,
       "coefficient": 1,
       "name": "гр",
-      "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
     },
     "name": "Соль",
-    "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
   },
   {
     "full_name": "",
-    "group": null,
+    "group": {
+      "name": "Сырье",
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
+    },
     "measurement": {
       "base": null,
       "coefficient": 1,
       "name": "мл",
-      "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+      "unique_code": "bcf752be7d4411ef90d35103db83216c"
     },
     "name": "Молоко",
-    "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
   }
 ]

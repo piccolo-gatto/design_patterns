@@ -3,18 +3,18 @@
     "base": null,
     "coefficient": 1,
     "name": "гр",
-    "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
   },
   {
     "base": null,
     "coefficient": 1,
     "name": "мл",
-    "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
   },
   {
     "base": null,
     "coefficient": 1,
     "name": "шт",
-    "unique_code": "729030be7ce011ef8b2970a8d3344cb0"
+    "unique_code": "bcf752be7d4411ef90d35103db83216c"
   }
 ]

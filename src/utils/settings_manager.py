@@ -18,13 +18,7 @@ from src.utils.castom_exceptions import ArgumentTypeException, EmptyException, U
 class SettingsManager(AbstractLogic):
     __file_name: str = "settings.json"
     __settings: SettingsModel = None
-    __report_formats = {
-        "CSV": CSVReport,
-        "MARKDOWN": MDReport,
-        "JSON": JSONReport,
-        "XML": XMLReport,
-        "RTF": RTFReport
-    }
+
 
     def __new__(cls):
         if not hasattr(cls, 'instance'):
@@ -77,9 +71,6 @@ class SettingsManager(AbstractLogic):
     def settings(self) -> SettingsModel:
         return self.__settings
 
-    @property
-    def report_formats(self) -> dict:
-        return self.__report_formats
 
     """
     Набор настроек по умолчанию
@@ -93,6 +84,11 @@ class SettingsManager(AbstractLogic):
         data.correspondent_account = "12345678900"
         data.bic = "044525225"
         data.organization_type = "11111"
+        data.report_formats = {
+        "CSV": "CSVReport",
+        "MARKDOWN": "MDReport",
+        "JSON": "JSONReport"
+    }
 
         return data
 
@@ -103,7 +99,7 @@ class SettingsManager(AbstractLogic):
         if format is None:
             format = self.__settings.report
         try:
-            report_class = self.report_formats.get(format.name, None)
+            report_class = self.settings.report_formats.get(format.name, None)
             return report_class()
 
         except:

@@ -5,9 +5,10 @@ from src.models.nomenclature_model import NomenclatureModel
 from src.models.measurement_model import MeasurementModel
 from src.models.ingredient_model import IngredientModel
 from src.models.process_model import ProcessModel
+from src.models.nomenclature_group_model import NomenclatureGroupModel
 
 class RecipeManager(AbstractLogic):
-    __file_name: str = "../data/recipe1.md"
+    __file_name: str = "data/recipe1.md"
     __recipe: RecipeModel = None
 
     """
@@ -36,6 +37,7 @@ class RecipeManager(AbstractLogic):
                 measurement = MeasurementModel()
                 count, measurement.name = cols[2].strip().split(" ")
                 nomen.measurement = measurement
+                nomen.group = NomenclatureGroupModel.default_group_source()
                 ingredient.count = int(count)
                 ingredient.nomenclature = nomen
                 ingredient.measurement = measurement

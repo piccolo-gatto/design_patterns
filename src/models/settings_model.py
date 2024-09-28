@@ -1,5 +1,10 @@
 from src.utils.castom_exceptions import ArgumentLengthException, UnknownValueException, ArgumentTypeException
 from src.utils.format_reporting import FormatReporting
+from src.reports.markdown_report import MDReport
+from src.reports.csv_report import CSVReport
+from src.reports.json_report import JSONReport
+from src.reports.xml_report import XMLReport
+from src.reports.rtf_report import RTFReport
 
 """
 Настройки
@@ -14,6 +19,7 @@ class SettingsModel:
     __bic: str = ""
     __organization_type: str = ""
     __report: FormatReporting = FormatReporting.CSV
+    __report_formats= {}
 
     @property
     def organization_name(self) -> str:
@@ -100,3 +106,13 @@ class SettingsModel:
         if not isinstance(value, FormatReporting):
             raise ArgumentTypeException("value", "FormatReporting")
         self.__report = value
+
+    @property
+    def report_formats(self):
+        return self.__report_formats
+
+    @report_formats.setter
+    def report_formats(self, value: dict):
+        if not isinstance(value, dict):
+            raise ArgumentTypeException("value", "dict")
+        self.__report_formats = value

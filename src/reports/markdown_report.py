@@ -13,6 +13,7 @@ class MDReport(AbstractReport):
         super().__init__()
         self.__format = FormatReporting.MARKDOWN
 
+
     def create(self, data: list):
         if not isinstance(data, list):
             raise ArgumentTypeException("data", "list")
