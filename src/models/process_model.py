@@ -29,5 +29,7 @@ class ProcessModel(AbstractReference):
 
         self.__content = value
 
+
+
     def set_compare_mode(self, other_object) -> bool:
         return super().set_compare_mode(other_object)

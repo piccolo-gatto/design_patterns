@@ -13,7 +13,6 @@ class MDReport(AbstractReport):
         super().__init__()
         self.__format = FormatReporting.MARKDOWN
 
-
     def create(self, data: list):
         if not isinstance(data, list):
             raise ArgumentTypeException("data", "list")
@@ -21,7 +20,8 @@ class MDReport(AbstractReport):
             raise EmptyException()
 
         first_model = data[0]
-        fields = list(filter(lambda x: not x.startswith("_") and not callable(getattr(first_model.__class__, x)), dir(first_model)))
+        fields = list(filter(lambda x: not x.startswith("_") and not callable(getattr(first_model.__class__, x)),
+                             dir(first_model)))
 
         line = ""
         for field in fields:

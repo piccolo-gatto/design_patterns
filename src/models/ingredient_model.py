@@ -42,5 +42,6 @@ class IngredientModel(AbstractReference):
 
         self.__measurement = value
 
+
     def set_compare_mode(self, other_object) -> bool:
         return super().set_compare_mode(other_object)

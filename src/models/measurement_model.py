@@ -58,5 +58,6 @@ class MeasurementModel(AbstractReference):
         item.name = "мл"
         return item
 
+
     def set_compare_mode(self, other_object) -> bool:
         return super().set_compare_mode(other_object)

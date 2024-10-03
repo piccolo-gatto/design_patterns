@@ -28,5 +28,6 @@ class NomenclatureGroupModel(AbstractReference):
         item.name = "Заморозка"
         return item
 
+
     def set_compare_mode(self, other_object) -> bool:
         return super().set_compare_mode(other_object)
