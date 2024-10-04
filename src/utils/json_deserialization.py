@@ -15,7 +15,7 @@ class JSONDeserialization(AbstractLogic):
         return self.__objects
 
     @objects.setter
-    def objects(self, value: list):
+    def objects(self, value: list) -> list:
         if not isinstance(value, list):
             raise ArgumentTypeException("objects", "list")
 
@@ -28,14 +28,16 @@ class JSONDeserialization(AbstractLogic):
             data = json.load(f)
             if data is None:
                 raise EmptyException()
+        return data
 
-            for item in data:
-                obj = self.create(item, self.model)
-                self.__objects.append(obj)
+    def get_objects(self, file_path: str):
+        data = self.open_report(file_path)
+        for item in data:
+            obj = self.create(item, self.model)
+            self.__objects.append(obj)
 
-            return True
 
-    def create(self, item, model: AbstractReference):
+    def create(self, item, model: AbstractReference) -> AbstractReference:
         for key, value in item.items():
             deserialized = self.deserialize(model(), key, value)
             if hasattr(model(), key):
@@ -45,7 +47,10 @@ class JSONDeserialization(AbstractLogic):
 
     def deserialize(self, model, key, value):
         if isinstance(value, dict):
-            deserialized = self.create(value, model.__annotations__.items())
+            model_atributes = model.__annotations__
+            if not model_atributes:
+                raise EmptyException()
+            deserialized = self.create(value, model_atributes.items())
         elif isinstance(value, list):
             deserialized = []
             for val in value:
