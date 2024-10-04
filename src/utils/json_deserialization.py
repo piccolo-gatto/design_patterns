@@ -15,7 +15,7 @@ class JSONDeserialization(AbstractLogic):
         return self.__objects
 
     @objects.setter
-    def objects(self, value: list) -> list:
+    def objects(self, value: list):
         if not isinstance(value, list):
             raise ArgumentTypeException("objects", "list")
 
