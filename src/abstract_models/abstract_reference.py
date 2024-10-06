@@ -20,6 +20,12 @@ class AbstractReference(ABC):
     def unique_code(self) -> str:
         return self.__unique_code
 
+    @unique_code.setter
+    def unique_code(self, unique_code: str):
+        if not isinstance(unique_code, str):
+            raise ArgumentTypeException("unique_code", "str")
+        self.__unique_code = unique_code
+
     """
     Вариант сравнения (по коду)
     """
@@ -46,3 +52,4 @@ class AbstractReference(ABC):
             raise ArgumentMaxLengthException("name", 50)
 
         self.__name = value
+
