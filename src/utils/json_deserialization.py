@@ -36,7 +36,6 @@ class JSONDeserialization(AbstractLogic):
             obj = self.create(item, self.model)
             self.__objects.append(obj)
 
-
     def create(self, item, model: AbstractReference) -> AbstractReference:
         for key, value in item.items():
             deserialized = self.deserialize(model(), key, value)
@@ -50,7 +49,7 @@ class JSONDeserialization(AbstractLogic):
             model_atributes = model.__annotations__
             if not model_atributes:
                 raise EmptyException()
-            deserialized = self.create(value, model_atributes.items())
+            deserialized = self.create(value, model_atributes)
         elif isinstance(value, list):
             deserialized = []
             for val in value:

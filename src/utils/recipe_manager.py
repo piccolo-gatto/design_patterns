@@ -8,7 +8,7 @@ from src.models.process_model import ProcessModel
 from src.models.nomenclature_group_model import NomenclatureGroupModel
 
 class RecipeManager(AbstractLogic):
-    __file_name: str = "../data/recipe1.md"
+    __file_name: str = "data/recipe1.md"
     __recipe: RecipeModel = None
 
     """
