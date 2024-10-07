@@ -1,8 +1,12 @@
 {
-    "organization_name" : "Рога и копыта",
+    "organization_name": "Рога и копыта",
     "inn": "380930934984",
     "account": "11111111111",
     "correspondent_account": "11111111111",
     "bic": "044525225",
-    "organization_type": "12345"
+    "organization_type": "12345",
+    "report_formats": {
+        "CSV": "CSVReport",
+        "MARKDOWN": "MDReport"
+    }
 }
