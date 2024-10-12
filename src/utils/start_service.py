@@ -63,7 +63,7 @@ class StartService(AbstractLogic):
         manager = RecipeManager()
         manager.open()
         list.append(manager.recipe)
-        manager.open("data/recipe2.md")
+        manager.open("../data/recipe2.md")
         list.append(manager.recipe)
         self.__reposity.data[DataRepository.recipe_key()] = list
 
