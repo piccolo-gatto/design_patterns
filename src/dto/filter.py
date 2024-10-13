@@ -36,3 +36,14 @@ class FilterDTO:
         if not isinstance(value, FilterType):
             ArgumentTypeException('type', FilterType)
         self.__type = value
+
+    def from_dict(self, data: dict):
+        try:
+            filter = FilterDTO()
+            filter.name = data["name"]
+            filter.id = data["unique_code"]
+            filter.type = data["type"]
+
+            return filter
+        except Exception as e:
+            raise e

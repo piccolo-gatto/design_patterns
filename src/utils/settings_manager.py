@@ -84,6 +84,7 @@ class SettingsManager(AbstractLogic):
         data.correspondent_account = "12345678900"
         data.bic = "044525225"
         data.organization_type = "11111"
+        data.report = FormatReporting.JSON
         data.report_formats = {
         "CSV": "CSVReport",
         "MARKDOWN": "MDReport",

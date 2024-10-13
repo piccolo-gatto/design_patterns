@@ -14,12 +14,7 @@ manager = SettingsManager()
 repository = DataRepository()
 service = StartService(repository, manager)
 service.create()
-data = {
-    'nomenclature': repository.nomenclature_key(),
-    'nomenclature_group': repository.nomenclature_group_key(),
-    'measurement': repository.measurement_key(),
-    'recipe': repository.recipe_key()
-}
+data = repository.data.keys()
 
 
 @app.route("/api/reports/formats", methods=["GET"])
@@ -42,7 +37,7 @@ def get_report(category, format):
         return Response("Указанный формат отчёта отсутствует!", 400)
 
     report = ReportFactory(manager).create(report_format)
-    report.create(repository.data[data[category]])
+    report.create(repository.data[category])
 
     return Response(report.result, 200)
 
@@ -53,14 +48,8 @@ def filter_data(domain):
         return Response("Указанная категория данных отсутствует!", 400)
 
     filter_data = request.get_json()
-    try:
-        filter = FilterDTO()
-        filter.name = filter_data["name"]
-        filter.id = filter_data["unique_code"]
-        filter.type = filter_data["type"]
-    except Exception as e:
-        return Response(f"Ошибка параметров фильтрации: {e}!", 400)
-    f_data = repository.data[data[domain]]
+    filter = FilterDTO().from_dict(filter_data)
+    f_data = repository.data[domain]
     if not f_data:
         return Response("В запрашиваемой категории нет данных!", 404)
     prototype = DomainPrototype(f_data)
@@ -68,7 +57,7 @@ def filter_data(domain):
     if not filtered_data.data:
         return Response("Данных нет", 404)
 
-    report = ReportFactory(manager).create(FormatReporting.JSON)
+    report = ReportFactory(manager).create_default()
     report.create(filtered_data.data)
 
     return report.result

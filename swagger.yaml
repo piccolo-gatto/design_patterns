@@ -43,7 +43,6 @@ paths:
             type: object
         500:
           description: Ошибка на сервере
-
         400:
           description: Ошибка ввода данных
         default:
@@ -59,3 +58,42 @@ paths:
       description: Наименование формата отчёта (CSV, MARKDOWN, JSON, XML, RTF)
       required: true
       type: string
+
+  /filter/{domain}:
+    post:
+      summary: Получить данные по параметрам фильтрации
+      operationId: main.filter_data
+      produces:
+        - application/text
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+        500:
+          description: Ошибка на сервере
+        404:
+          description: Данные не найдены
+        400:
+          description: Ошибка ввода данных
+        default:
+          description: Неизвестная ошибка
+      parameters:
+        - name: domain
+          in: path
+          required: true
+          type: string
+          description: Наименование категории данных (nomenclature, nomenclature_group, measurement, recipe)
+        - in: body
+          name: filter
+          description: Параметры фильтрации
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              unique_code:
+                type: string
+              type:
+                type: string
