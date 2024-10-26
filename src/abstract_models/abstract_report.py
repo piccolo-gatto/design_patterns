@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from src.utils.format_reporting import FormatReporting
-#from Src.Core.validator import validator
 
 """
 Абстрактный класс для наследования для отчетов

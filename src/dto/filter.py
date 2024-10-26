@@ -1,3 +1,4 @@
+from datetime import datetime
 from src.dto.filter_type import FilterType
 from src.utils.castom_exceptions import ArgumentTypeException
 
@@ -14,7 +15,7 @@ class FilterDTO:
     @name.setter
     def name(self, value: str):
         if not isinstance(value, str):
-            ArgumentTypeException('name', str)
+            ArgumentTypeException('name', "str")
         self.__name = value
 
     @property
@@ -24,7 +25,7 @@ class FilterDTO:
     @id.setter
     def id(self, value: str):
         if not isinstance(value, str):
-            ArgumentTypeException('id', str)
+            ArgumentTypeException('id', "str")
         self.__id = value
 
     @property
@@ -34,7 +35,7 @@ class FilterDTO:
     @type.setter
     def type(self, value: FilterType):
         if not isinstance(value, FilterType):
-            ArgumentTypeException('type', FilterType)
+            ArgumentTypeException('type', "FilterType")
         self.__type = value
 
     def from_dict(self, data: dict):

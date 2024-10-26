@@ -1,4 +1,5 @@
 import connexion
+import json
 from flask import Response, request
 from src.utils.format_reporting import FormatReporting
 from src.utils.data_repository import DataRepository
@@ -7,6 +8,10 @@ from src.utils.start_service import StartService
 from src.reports.report_factory import ReportFactory
 from src.logics.domain_prototype import DomainPrototype
 from src.dto.filter import FilterDTO
+from src.logics.transaction_prototype import TransactionPrototype
+from src.dto.transaction_filter import TransactionFilterDTO
+from src.process.process_factory import ProcessFactory
+from src.process.warehouse_turnover_process import WarehouseTurnoverProcess
 
 app = connexion.FlaskApp(__name__)
 
@@ -62,6 +67,37 @@ def filter_data(domain):
 
     return report.result
 
+@app.route("/api/transactions", methods=["POST"])
+def transactions():
+    filter_data = request.get_json()
+    filter = TransactionFilterDTO().from_dict(filter_data)
+    f_data = repository.data['transaction']
+
+    prototype = TransactionPrototype(f_data)
+    filtered_data = prototype.create(f_data, filter)
+    if not filtered_data.data:
+        return Response("Данных нет", 404)
+
+    report = ReportFactory(manager).create_default()
+    report.create(filtered_data.data)
+    return report.result
+
+@app.route("/api/turnovers", methods=["POST"])
+def turnovers():
+    filter_data = request.get_json()
+    filter = TransactionFilterDTO().from_dict(filter_data)
+    f_data = repository.data['transaction']
+
+    prototype = TransactionPrototype(f_data)
+    filtered_data = prototype.create(f_data, filter)
+    if not filtered_data.data:
+        return Response("Данных нет", 404)
+
+    process = WarehouseTurnoverProcess()
+    result = process.process(filtered_data.data)
+    report = ReportFactory(manager).create_default()
+    report.create(result)
+    return report.result
 
 if __name__ == '__main__':
     app.add_api("swagger.yaml")

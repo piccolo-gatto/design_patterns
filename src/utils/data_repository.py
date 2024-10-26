@@ -55,6 +55,22 @@ class DataRepository(AbstractLogic):
     def recipe_key() -> str:
         return "recipe"
 
+    """
+    Ключ для хранения складов
+    """
+
+    @staticmethod
+    def warehouse_key() -> str:
+        return "warehouse"
+
+    """
+    Ключ для хранения транзакций
+    """
+
+    @staticmethod
+    def transaction_key() -> str:
+        return "transaction"
+
 
     """
     Перегрузка абстрактного метода
