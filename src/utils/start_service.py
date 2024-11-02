@@ -1,9 +1,11 @@
+import random
 from src.abstract_models.abstract_logic import AbstractLogic
 from src.utils.data_repository import DataRepository
-# from src.Core.validator import validator
 from src.models.nomenclature_group_model import NomenclatureGroupModel
 from src.models.measurement_model import MeasurementModel
 from src.models.nomenclature_model import NomenclatureModel
+from src.models.warehouse_model import WarehouseModel
+from src.models.warehouse_transaction_model import WarehouseTransactionModel
 from src.utils.recipe_manager import RecipeManager
 from src.models.recipe_model import RecipeModel
 from src.utils.settings_manager import SettingsManager
@@ -80,6 +82,31 @@ class StartService(AbstractLogic):
         self.__reposity.data[DataRepository.nomenclature_key()] = list
 
     """
+    Сформировать склады
+    """
+
+    def __create_warehouses(self):
+        list = []
+        list.append(WarehouseModel.default_warehouse_leninsky())
+        list.append(WarehouseModel.default_warehouse_sverdlovsk())
+        self.__reposity.data[DataRepository.warehouse_key()] = list
+
+    """
+    Сформировать транзакции
+    """
+
+    def __create_transactions(self):
+        list = []
+        for nomenclature in self.__reposity.data[DataRepository.nomenclature_key()]:
+            transaction = WarehouseTransactionModel()
+            transaction.nomenclature = nomenclature
+            transaction.measurement = nomenclature.measurement
+            transaction.warehouse = random.choice([WarehouseModel.default_warehouse_leninsky(), WarehouseModel.default_warehouse_sverdlovsk()])
+            transaction.count = random.randint(1, 1000)
+            list.append(transaction)
+        self.__reposity.data[DataRepository.transaction_key()] = list
+
+    """
     Первый старт
     """
 
@@ -88,6 +115,8 @@ class StartService(AbstractLogic):
         self.__create_measurements()
         self.__create_recipes()
         self.__create_nomenclature()
+        self.__create_warehouses()
+        self.__create_transactions()
 
     """
     Перегрузка абстрактного метода

@@ -97,3 +97,114 @@ paths:
                 type: string
               type:
                 type: string
+
+
+
+  /transactions:
+    post:
+      summary: Получить данные о транзакциях
+      operationId: main.transactions
+      consumes:
+        - application/json
+      produces:
+        - text/html
+      parameters:
+        - in: body
+          name: filter_data
+          description: Параметры фильтрации
+          required: true
+          schema:
+            type: object
+            properties:
+              start_period:
+                type: string
+              end_period:
+                type: string
+              warehouse:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  unique_code:
+                    type: string
+                  type:
+                    type: string
+                    enum: ['equals', 'like']
+              nomenclature:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  unique_code:
+                    type: string
+                  type:
+                    type: string
+                    enum: ['equals', 'like']
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+        500:
+          description: Ошибка на сервере
+        404:
+          description: Данные не найдены
+        400:
+          description: Ошибка ввода данных
+        default:
+          description: Неизвестная ошибка
+
+
+  /turnovers:
+    post:
+      summary: Получить данные об оборотах
+      operationId: main.turnovers
+      consumes:
+        - application/json
+      produces:
+        - text/html
+      parameters:
+        - in: body
+          name: filter_data
+          description: Параметры фильтрации
+          required: true
+          schema:
+            type: object
+            properties:
+              start_period:
+                type: string
+              end_period:
+                type: string
+              warehouse:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  unique_code:
+                    type: string
+                  type:
+                    type: string
+                    enum: ['equals', 'like']
+              nomenclature:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  unique_code:
+                    type: string
+                  type:
+                    type: string
+                    enum: ['equals', 'like']
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+        500:
+          description: Ошибка на сервере
+        404:
+          description: Данные не найдены
+        400:
+          description: Ошибка ввода данных
+        default:
+          description: Неизвестная ошибка
