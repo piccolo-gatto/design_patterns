@@ -11,9 +11,9 @@ class WarehouseTransactionModel(AbstractReference):
     __warehouse: WarehouseModel = None
     __nomenclature: NomenclatureModel = None
     __count: int = 0
-    __type: TransactionType = TransactionType.RECEIPT.value
+    __type: str = TransactionType.RECEIPT.value
     __measurement: MeasurementModel = None
-    __datetime: datetime = datetime.now()
+    __date: datetime = datetime.now().isoformat()
 
     @property
     def warehouse(self) -> WarehouseModel:
@@ -49,14 +49,13 @@ class WarehouseTransactionModel(AbstractReference):
         self.__count = value
 
     @property
-    def type(self) -> TransactionType:
+    def type(self) -> str:
         return self.__type
 
     @type.setter
-    def type(self, value: TransactionType):
-        if not isinstance(value, TransactionType):
-            raise ArgumentTypeException("type", "TransactionType")
-
+    def type(self, value: str):
+        if not isinstance(value, str):
+            raise ArgumentTypeException("type", "str")
         self.__type = value
 
     @property
@@ -71,15 +70,15 @@ class WarehouseTransactionModel(AbstractReference):
         self.__measurement = value
 
     @property
-    def datetime(self) -> datetime:
-        return self.__datetime
+    def date(self) -> datetime:
+        return self.__date
 
-    @datetime.setter
-    def datetime(self, value: datetime):
-        if not isinstance(value, datetime):
-            raise ArgumentTypeException("datetime", "datetime")
+    @date.setter
+    def date(self, value: str):
+        if not isinstance(value, str):
+            raise ArgumentTypeException("date", "str")
 
-        self.__datetime = value
+        self.__date = datetime.strptime(value, "%Y-%m-%d")
 
     def set_compare_mode(self, other_object) -> bool:
         return super().set_compare_mode(other_object)

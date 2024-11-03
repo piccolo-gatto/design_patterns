@@ -1,4 +1,5 @@
 import random
+from datetime import datetime
 from src.abstract_models.abstract_logic import AbstractLogic
 from src.utils.data_repository import DataRepository
 from src.models.nomenclature_group_model import NomenclatureGroupModel
@@ -65,7 +66,7 @@ class StartService(AbstractLogic):
         manager = RecipeManager()
         manager.open()
         list.append(manager.recipe)
-        manager.open("data/recipe2.md")
+        manager.open("../data/recipe2.md")
         list.append(manager.recipe)
         self.__reposity.data[DataRepository.recipe_key()] = list
 
@@ -97,13 +98,20 @@ class StartService(AbstractLogic):
 
     def __create_transactions(self):
         list = []
-        for nomenclature in self.__reposity.data[DataRepository.nomenclature_key()]:
-            transaction = WarehouseTransactionModel()
-            transaction.nomenclature = nomenclature
-            transaction.measurement = nomenclature.measurement
-            transaction.warehouse = random.choice([WarehouseModel.default_warehouse_leninsky(), WarehouseModel.default_warehouse_sverdlovsk()])
-            transaction.count = random.randint(1, 1000)
-            list.append(transaction)
+        for i in range(200):
+            for nomenclature in self.__reposity.data[DataRepository.nomenclature_key()]:
+                transaction = WarehouseTransactionModel()
+                transaction.nomenclature = nomenclature
+                transaction.measurement = nomenclature.measurement
+                transaction.warehouse = random.choice([WarehouseModel.default_warehouse_leninsky(), WarehouseModel.default_warehouse_sverdlovsk()])
+                transaction.count = random.randint(1, 1000)
+                transaction.type = random.choice(['receipt', 'expenditure'])
+                year = random.randint(1900, 2024)
+                month = random.randint(1, 12)
+                day = random.randint(1, 28)
+                transaction.date = f"{year}-{month}-{day}"
+                list.append(transaction)
+
         self.__reposity.data[DataRepository.transaction_key()] = list
 
     """
