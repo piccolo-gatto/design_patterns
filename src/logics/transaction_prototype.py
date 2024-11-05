@@ -4,7 +4,7 @@ from src.dto.filter import FilterDTO
 from src.abstract_models.abstract_prototype import AbstractPrototype
 from src.logics.domain_prototype import DomainPrototype
 from src.dto.filter_logic import FilterLogic
-from datetime import datetime
+from datetime import datetime, date
 from src.utils.castom_exceptions import ArgumentTypeException
 
 
@@ -50,17 +50,17 @@ class TransactionPrototype(DomainPrototype):
 
         return filter_data
 
-    def filter_period(self, data: list, start_period: datetime, end_period: datetime) -> list:
+    def filter_period(self, data: list, start_period: date, end_period: datetime) -> list:
         if not isinstance(data, list):
             ArgumentTypeException('date_time', 'list')
         if not isinstance(start_period, datetime):
-            ArgumentTypeException('start', 'datetime')
+            ArgumentTypeException('start_period', 'datetime')
         if not isinstance(end_period, datetime):
-            ArgumentTypeException('end', 'datetime')
+            ArgumentTypeException('end_period', 'datetime')
 
         filter_data = []
         for item in data:
-            if start_period <= getattr(item, "datetime") <= end_period:
+            if start_period <= getattr(item, "datetime") and getattr(item, "datetime") <= end_period:
                 filter_data.append(item)
 
         return filter_data

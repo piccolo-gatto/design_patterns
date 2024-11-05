@@ -84,7 +84,7 @@ class SettingsManager(AbstractLogic):
         data.correspondent_account = "12345678900"
         data.bic = "044525225"
         data.organization_type = "11111"
-        data.report = FormatReporting.JSON
+        data.report = "JSON"
         data.report_formats = {
         "CSV": "CSVReport",
         "MARKDOWN": "MDReport",
@@ -106,5 +106,15 @@ class SettingsManager(AbstractLogic):
         except:
             raise UnknownValueException()
 
+    def format_report(self) -> str:
+        report = JSONReport()
+        print(self.settings)
+        report.create([self.settings])
+        return report.result
+
+    def save(self):
+        report = self.format_report()
+        with open("data/settings.json", "w", encoding="utf-8") as f:
+            f.write(report)
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)

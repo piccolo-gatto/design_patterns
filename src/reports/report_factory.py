@@ -60,7 +60,7 @@ class ReportFactory(AbstractLogic):
             self.reports[FormatReporting[key]] = value
 
     def create_default(self):
-        return self.create(self.settings.report)
+        return self.create(FormatReporting[self.settings.report])
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)

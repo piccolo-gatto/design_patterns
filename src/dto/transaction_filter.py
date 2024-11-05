@@ -1,6 +1,5 @@
-from src.dto.filter_type import FilterType
 from src.dto.filter import FilterDTO
-from datetime import datetime
+from datetime import datetime, date
 from src.abstract_models.abstract_logic import AbstractLogic
 from src.utils.castom_exceptions import ArgumentTypeException
 
@@ -53,7 +52,7 @@ class TransactionFilterDTO(AbstractLogic):
             warehouse_filter = data['warehouse']
             nomenclature_filter = data['nomenclature']
             filter.start_period = datetime.strptime(data["start_period"], "%Y-%m-%d")
-            filter.end_period = datetime.strptime(data["start_period"], "%Y-%m-%d")
+            filter.end_period = datetime.strptime(data["end_period"], "%Y-%m-%d")
 
 
             filter.warehouse = FilterDTO().from_dict(warehouse_filter)

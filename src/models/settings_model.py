@@ -1,20 +1,23 @@
+from datetime import datetime, date
 from src.utils.castom_exceptions import ArgumentLengthException, UnknownValueException, ArgumentTypeException
 from src.utils.format_reporting import FormatReporting
+from src.abstract_models.abstract_reference import AbstractReference
 
 """
 Настройки
 """
 
 
-class SettingsModel:
+class SettingsModel(AbstractReference):
     __organization_name: str = ""
     __inn: str = ""
     __account: str = ""
     __correspondent_account: str = ""
     __bic: str = ""
     __organization_type: str = ""
-    __report: FormatReporting = FormatReporting.CSV
+    __report: str = "JSONReport"
     __report_formats= {}
+    __block_period: datetime = date.today().isoformat()
 
     @property
     def organization_name(self) -> str:
@@ -97,9 +100,9 @@ class SettingsModel:
         return self.__report
 
     @report.setter
-    def report(self, value: FormatReporting):
-        if not isinstance(value, FormatReporting):
-            raise ArgumentTypeException("value", "FormatReporting")
+    def report(self, value: str):
+        if not isinstance(value, str):
+            raise ArgumentTypeException("value", "str")
         self.__report = value
 
     @property
@@ -111,3 +114,17 @@ class SettingsModel:
         if not isinstance(value, dict):
             raise ArgumentTypeException("value", "dict")
         self.__report_formats = value
+
+    @property
+    def block_period(self) -> datetime:
+        return self.__block_period
+
+    @block_period.setter
+    def block_period(self, value: str):
+        if not isinstance(value, str):
+            raise ArgumentTypeException("block_period", "str")
+
+        self.__block_period = datetime.strptime(value, "%Y-%m-%d")
+
+    def set_compare_mode(self, other_object) -> bool:
+        return super().set_compare_mode(other_object)

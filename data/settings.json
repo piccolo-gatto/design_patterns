@@ -1,12 +1,19 @@
-{
-    "organization_name": "Рога и копыта",
-    "inn": "380930934984",
-    "account": "11111111111",
-    "correspondent_account": "11111111111",
+[
+  {
+    "account": "12345678900",
     "bic": "044525225",
-    "organization_type": "12345",
+    "block_period": "2024-01-01",
+    "correspondent_account": "12345678900",
+    "inn": "380080920202",
+    "name": "",
+    "organization_name": "Рога и копыта (default)",
+    "organization_type": "11111",
+    "report": "JSON",
     "report_formats": {
-        "CSV": "CSVReport",
-        "MARKDOWN": "MDReport"
-    }
-}
+      "CSV": "CSVReport",
+      "MARKDOWN": "MDReport",
+      "JSON": "JSONReport"
+    },
+    "unique_code": "e1c9ec25993711ef88df70a8d3344cb0"
+  }
+]

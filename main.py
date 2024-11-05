@@ -1,5 +1,5 @@
 import connexion
-import json
+from datetime import datetime
 from flask import Response, request
 from src.utils.format_reporting import FormatReporting
 from src.utils.data_repository import DataRepository
@@ -59,6 +59,7 @@ def filter_data(domain):
         return Response("В запрашиваемой категории нет данных!", 404)
     prototype = DomainPrototype(f_data)
     filtered_data = prototype.create(f_data, filter)
+    print(filtered_data.data)
     if not filtered_data.data:
         return Response("Данных нет", 404)
 
@@ -94,10 +95,22 @@ def turnovers():
         return Response("Данных нет", 404)
 
     process = WarehouseTurnoverProcess()
+    process.block_period = manager.settings.block_period
     result = process.process(filtered_data.data)
     report = ReportFactory(manager).create_default()
     report.create(result)
     return report.result
+
+@app.route("/block_period", methods=["GET"])
+def block_period():
+    return {"block_period": manager.settings.block_period}
+
+@app.route("/new_block_period", methods=["POST"])
+def new_block_period():
+    new_block_period = request.get_json()["block_period"]
+    manager.settings.block_period = new_block_period
+    manager.save()
+    return {"block_period": str(manager.settings.block_period)}
 
 if __name__ == '__main__':
     app.add_api("swagger.yaml")

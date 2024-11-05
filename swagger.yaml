@@ -98,8 +98,6 @@ paths:
               type:
                 type: string
 
-
-
   /transactions:
     post:
       summary: Получить данные о транзакциях
@@ -154,7 +152,6 @@ paths:
         default:
           description: Неизвестная ошибка
 
-
   /turnovers:
     post:
       summary: Получить данные об оборотах
@@ -208,3 +205,49 @@ paths:
           description: Ошибка ввода данных
         default:
           description: Неизвестная ошибка
+
+  /block_period:
+    get:
+      summary: Получить дату загрузки
+      operationId: main.block_period
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+        500:
+          description: Ошибка на сервере
+        default:
+          description: Неизвестная ошибка
+
+  /new_block_period:
+    post:
+      summary: Обновить дату блокировки
+      operationId: main.new_block_period
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+        500:
+          description: Ошибка на сервере
+        404:
+          description: Данные не найдены
+        400:
+          description: Ошибка ввода данных
+        default:
+          description: Неизвестная ошибка
+      parameters:
+        - in: body
+          name: new_block_period
+          description: Новая дата блокировки
+          required: true
+          schema:
+            type: object
+            properties:
+              block_period:
+                type: string
