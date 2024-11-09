@@ -9,6 +9,7 @@ from src.models.settings_model import SettingsModel
 from src.utils.format_reporting import FormatReporting
 from src.abstract_models.abstract_logic import AbstractLogic
 from src.utils.castom_exceptions import ArgumentTypeException, EmptyException, UnknownValueException
+from src.utils.event_type import EventType
 
 """
 Менеджер настроек
@@ -118,3 +119,6 @@ class SettingsManager(AbstractLogic):
             f.write(report)
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
+
+    def handle_event(self, type: EventType, params):
+        super().handle_event(type, params)

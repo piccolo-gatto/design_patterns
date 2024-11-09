@@ -1,5 +1,4 @@
 import connexion
-from datetime import datetime
 from flask import Response, request
 from src.utils.format_reporting import FormatReporting
 from src.utils.data_repository import DataRepository
@@ -10,8 +9,11 @@ from src.logics.domain_prototype import DomainPrototype
 from src.dto.filter import FilterDTO
 from src.logics.transaction_prototype import TransactionPrototype
 from src.dto.transaction_filter import TransactionFilterDTO
-from src.process.process_factory import ProcessFactory
+from src.utils.nomenclature_service import NomenclatureService
 from src.process.warehouse_turnover_process import WarehouseTurnoverProcess
+from src.models.nomenclature_model import NomenclatureModel
+from src.utils.observe_service import ObserveService
+from src.utils.event_type import EventType
 
 app = connexion.FlaskApp(__name__)
 
@@ -19,6 +21,7 @@ manager = SettingsManager()
 repository = DataRepository()
 service = StartService(repository, manager)
 service.create()
+nomenclature_service = NomenclatureService(repository)
 data = repository.data.keys()
 
 
@@ -111,6 +114,34 @@ def new_block_period():
     manager.settings.block_period = new_block_period
     manager.save()
     return {"block_period": str(manager.settings.block_period)}
+
+@app.route('/api/nomenclature/get', methods=['GET'])
+def get_nomenclature():
+    result = nomenclature_service.get_nomenclature(request.json)
+    report = ReportFactory(manager).create_default()
+    report.create(list(result))
+    return report.result, 200
+
+@app.route('/api/nomenclature/add', methods=['PUT'])
+def add_nomenclature():
+    result = NomenclatureService.add_nomenclature(request.json)
+
+    report = ReportFactory(manager).create_default()
+    report.create([result])
+    return report.result, 200
+
+
+@app.route('/api/nomenclature/update', methods=['PATCH'])
+def update_nomenclature():
+    statuses = ObserveService.raise_event(EventType.CHANGE_NOMENCLATURE, request.json)
+    status = statuses[type(NomenclatureService).__name__]
+    return status, 200
+
+@app.route('/api/nomenclature/delete', methods=['DELETE'])
+def delete_nomenclature():
+    statuses = ObserveService.raise_event(EventType.DELETE_NOMENCLATURE, request.json)
+    status = statuses[type(NomenclatureService).__name__]
+    return status, 200
 
 if __name__ == '__main__':
     app.add_api("swagger.yaml")

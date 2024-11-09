@@ -6,6 +6,7 @@ from src.models.measurement_model import MeasurementModel
 from src.models.ingredient_model import IngredientModel
 from src.models.process_model import ProcessModel
 from src.models.nomenclature_group_model import NomenclatureGroupModel
+from src.utils.event_type import EventType
 
 class RecipeManager(AbstractLogic):
     __file_name: str = "../data/recipe1.md"
@@ -61,3 +62,6 @@ class RecipeManager(AbstractLogic):
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
+
+    def handle_event(self, type: EventType, params):
+        super().handle_event(type, params)

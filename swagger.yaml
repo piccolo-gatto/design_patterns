@@ -251,3 +251,117 @@ paths:
             properties:
               block_period:
                 type: string
+
+  /api/nomenclature/get:
+    get:
+      summary: Получить номенклатуру
+      produces:
+        - text/html
+      operationId: main.get_nomenclature
+      parameters:
+        - name: unique_code
+          in: query
+          description: Уникальный код номенклатуры
+          required: true
+          type: string
+      responses:
+        500:
+          description: Ошибка на сервере
+        404:
+          description: Данные не найдены
+        400:
+          description: Ошибка ввода данных
+        default:
+          description: Неизвестная ошибка
+
+  /api/nomenclature/add:
+    put:
+      summary: Добавить номенклатуру
+      produces:
+        - text/html
+      operationId: main.add_nomenclature
+      parameters:
+        - in: body
+          name: body
+          description: Новая номенклатура
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              full_name:
+                type: string
+              nomenclature_group_unique_code:
+                type: string
+              measurement_unique_code:
+                type: string
+      responses:
+        500:
+          description: Ошибка на сервере
+        404:
+          description: Данные не найдены
+        400:
+          description: Ошибка ввода данных
+        default:
+          description: Неизвестная ошибка
+
+  /api/nomenclature/update:
+    patch:
+      summary: Обновить номенклатуру
+      produces:
+        - text/html
+      operationId: main.update_nomenclature
+      parameters:
+        - in: body
+          name: body
+          description: Новые данные номенклатуры
+          required: true
+          schema:
+            type: object
+            properties:
+              unique_code:
+                type: string
+              name:
+                type: string
+              full_name:
+                type: string
+              nomenclature_group_unique_code:
+                type: string
+              measurement_unique_code:
+                type: string
+      responses:
+        500:
+          description: Ошибка на сервере
+        404:
+          description: Данные не найдены
+        400:
+          description: Ошибка ввода данных
+        default:
+          description: Неизвестная ошибка
+
+  /api/nomenclature/delete:
+    delete:
+      summary: Удалить номенклатуру
+      produces:
+        - text/html
+      operationId: main.delete_nomenclature
+      parameters:
+        - in: body
+          name: body
+          description: Уникальный код номенклатуры
+          required: true
+          schema:
+            type: object
+            properties:
+              unique_code:
+                type: string
+      responses:
+        500:
+          description: Ошибка на сервере
+        404:
+          description: Данные не найдены
+        400:
+          description: Ошибка ввода данных
+        default:
+          description: Неизвестная ошибка

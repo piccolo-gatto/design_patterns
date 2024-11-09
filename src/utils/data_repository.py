@@ -1,4 +1,5 @@
 from src.abstract_models.abstract_logic import AbstractLogic
+from src.utils.event_type import EventType
 
 """
 Репозиторий данных
@@ -79,3 +80,6 @@ class DataRepository(AbstractLogic):
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
+
+    def handle_event(self, type: EventType, params):
+        super().handle_event(type, params)
