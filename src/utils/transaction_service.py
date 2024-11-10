@@ -2,18 +2,17 @@ from src.utils.observe_service import ObserveService
 from src.utils.event_type import EventType
 from src.utils.data_repository import DataRepository
 from src.abstract_models.abstract_logic import AbstractLogic
-from src.utils.nomenclature_service import NomenclatureService
 
 
 class TransactionService(AbstractLogic):
-    def __init__(self, reposity: DataRepository):
+    def __init__(self, repository: DataRepository):
         ObserveService.append(self)
-        self.__reposity = reposity
+        self.__repository = repository
 
-    def update_transactions(self, request):
-        transactions = self.__reposity.data(DataRepository.transaction_key(), [])
+    def update_transactions(self, data):
+        transactions = self.__repository.data(DataRepository.transaction_key(), [])
         for transaction in transactions:
-            NomenclatureService.update_nomenclature_in_models(transaction, request)
+            data.update_nomenclature_in_models(transaction)
         return {"status": "Транзакции успешно обновлены"}
 
     def handle_event(self, type: EventType, params):

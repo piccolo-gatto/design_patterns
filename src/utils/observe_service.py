@@ -20,7 +20,7 @@ class ObserveService:
             ObserveService.observers.append(service)
 
     @staticmethod
-    def raise_event( type: EventType, params ):
+    def raise_event(type: EventType, params):
         for instance in ObserveService.observers:
             if instance is not None:
-                instance.handle_event( type, params )
+                instance.handle_event(type, params)
