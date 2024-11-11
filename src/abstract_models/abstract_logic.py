@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+from src.utils.event_type import EventType
+from src.utils.castom_exceptions import ArgumentTypeException
 
 """
 Абстрактный класс для обработки логики
@@ -30,3 +32,11 @@ class AbstractLogic(ABC):
     @abstractmethod
     def set_exception(self, ex: Exception):
         pass
+
+    """
+    Обработка
+    """
+    @abstractmethod
+    def handle_event(self, type: EventType, params):
+        if not isinstance(type, EventType):
+            ArgumentTypeException('type', 'EventType')

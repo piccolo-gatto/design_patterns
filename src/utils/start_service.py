@@ -11,6 +11,7 @@ from src.utils.recipe_manager import RecipeManager
 from src.models.recipe_model import RecipeModel
 from src.utils.settings_manager import SettingsManager
 from src.models.settings_model import SettingsModel
+from src.utils.event_type import EventType
 
 """
 Сервис для реализации первого старта приложения
@@ -132,3 +133,6 @@ class StartService(AbstractLogic):
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
+
+    def handle_event(self, type: EventType, params):
+        super().handle_event(type, params)

@@ -11,7 +11,7 @@ class CSVReport(AbstractReport):
 
     def __init__(self) -> None:
         super().__init__()
-        self.__format: int = FormatReporting.CSV
+        self.__format = FormatReporting.CSV
 
 
 

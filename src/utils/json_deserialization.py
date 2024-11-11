@@ -2,6 +2,7 @@ import json
 from src.abstract_models.abstract_logic import AbstractLogic
 from src.abstract_models.abstract_reference import AbstractReference
 from src.utils.castom_exceptions import ArgumentTypeException, EmptyException
+from src.utils.event_type import EventType
 
 
 class JSONDeserialization(AbstractLogic):
@@ -60,3 +61,6 @@ class JSONDeserialization(AbstractLogic):
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
+
+    def handle_event(self, type: EventType, params):
+        super().handle_event(type, params)

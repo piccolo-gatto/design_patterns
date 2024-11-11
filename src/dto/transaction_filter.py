@@ -2,6 +2,7 @@ from src.dto.filter import FilterDTO
 from datetime import datetime, date
 from src.abstract_models.abstract_logic import AbstractLogic
 from src.utils.castom_exceptions import ArgumentTypeException
+from src.utils.event_type import EventType
 
 class TransactionFilterDTO(AbstractLogic):
     __nomenclature: FilterDTO
@@ -64,3 +65,6 @@ class TransactionFilterDTO(AbstractLogic):
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
+
+    def handle_event(self, type: EventType, params):
+        super().handle_event(type, params)
