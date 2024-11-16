@@ -29,10 +29,10 @@ class JSONDeserialization(AbstractLogic):
             data = json.load(f)
             if data is None:
                 raise EmptyException()
+        self.get_objects(data)
         return data
 
-    def get_objects(self, file_path: str):
-        data = self.open_report(file_path)
+    def get_objects(self, data):
         for item in data:
             obj = self.create(item, self.model)
             self.__objects.append(obj)
@@ -44,6 +44,7 @@ class JSONDeserialization(AbstractLogic):
                 setattr(model(), key, deserialized)
 
             return model()
+
 
     def deserialize(self, model, key, value):
         if isinstance(value, dict):

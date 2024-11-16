@@ -16,8 +16,9 @@ class SettingsModel(AbstractReference):
     __bic: str = ""
     __organization_type: str = ""
     __report: str = "JSONReport"
-    __report_formats= {}
+    __report_formats = {}
     __block_period: datetime = date.today().isoformat()
+    __first_start: bool = True
 
     @property
     def organization_name(self) -> str:
@@ -125,6 +126,17 @@ class SettingsModel(AbstractReference):
             raise ArgumentTypeException("block_period", "str")
 
         self.__block_period = datetime.strptime(value, "%Y-%m-%d")
+
+
+    @property
+    def first_start(self):
+        return self.__first_start
+
+    @first_start.setter
+    def first_start(self, value: bool):
+        if not isinstance(value, bool):
+            raise ArgumentTypeException("first_start", "str")
+        self.__first_start = value
 
     def set_compare_mode(self, other_object) -> bool:
         return super().set_compare_mode(other_object)

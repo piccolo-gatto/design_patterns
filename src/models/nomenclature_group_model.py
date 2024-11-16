@@ -1,3 +1,4 @@
+import uuid
 from src.abstract_models.abstract_reference import AbstractReference
 from src.utils.castom_exceptions import ArgumentTypeException
 
@@ -19,12 +20,14 @@ class NomenclatureGroupModel(AbstractReference):
     @staticmethod
     def default_group_source():
         item = NomenclatureGroupModel()
+        item.unique_code = uuid.uuid1().hex
         item.name = "Сырье"
         return item
 
     @staticmethod
     def default_group_cold():
         item = NomenclatureGroupModel()
+        item.unique_code = uuid.uuid1().hex
         item.name = "Заморозка"
         return item
 

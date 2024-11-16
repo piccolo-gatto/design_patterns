@@ -252,7 +252,7 @@ paths:
               block_period:
                 type: string
 
-  /api/nomenclature/get:
+  /nomenclature/get:
     get:
       summary: Получить номенклатуру
       produces:
@@ -265,6 +265,10 @@ paths:
           required: true
           type: string
       responses:
+        200:
+          description: OK
+          schema:
+            type: object
         500:
           description: Ошибка на сервере
         404:
@@ -274,7 +278,7 @@ paths:
         default:
           description: Неизвестная ошибка
 
-  /api/nomenclature/add:
+  /nomenclature/add:
     put:
       summary: Добавить номенклатуру
       produces:
@@ -297,6 +301,10 @@ paths:
               measurement_unique_code:
                 type: string
       responses:
+        200:
+          description: OK
+          schema:
+            type: object
         500:
           description: Ошибка на сервере
         404:
@@ -306,7 +314,7 @@ paths:
         default:
           description: Неизвестная ошибка
 
-  /api/nomenclature/update:
+  /nomenclature/update:
     patch:
       summary: Обновить номенклатуру
       produces:
@@ -331,6 +339,10 @@ paths:
               measurement_unique_code:
                 type: string
       responses:
+        200:
+          description: OK
+          schema:
+            type: object
         500:
           description: Ошибка на сервере
         404:
@@ -340,7 +352,7 @@ paths:
         default:
           description: Неизвестная ошибка
 
-  /api/nomenclature/delete:
+  /nomenclature/delete:
     delete:
       summary: Удалить номенклатуру
       produces:
@@ -357,6 +369,87 @@ paths:
               unique_code:
                 type: string
       responses:
+        200:
+          description: OK
+          schema:
+            type: object
+        500:
+          description: Ошибка на сервере
+        404:
+          description: Данные не найдены
+        400:
+          description: Ошибка ввода данных
+        default:
+          description: Неизвестная ошибка
+  
+  /save_data:
+    post:
+      summary: Сохранить данные в файл
+      operationId: main.save_data
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+        500:
+          description: Ошибка на сервере
+        404:
+          description: Данные не найдены
+        400:
+          description: Ошибка ввода данных
+        default:
+          description: Неизвестная ошибка
+
+  /load_data:
+    post:
+      summary: Загрузить данные из файла
+      operationId: main.load_data
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+        500:
+          description: Ошибка на сервере
+        404:
+          description: Данные не найдены
+        400:
+          description: Ошибка ввода данных
+        default:
+          description: Неизвестная ошибка
+
+  /tbs/{start_date}/{end_date}/{warehouse}:
+    get:
+      summary: Получить оборотно-сальдовую ведомость за указанный период по складу
+      operationId: main.get_tbs_report
+      produces:
+        - application/json
+      parameters:
+        - name: start_date
+          in: path
+          description: Дата начала в формате 'YYYY-MM-DD'
+          required: true
+          type: string
+        - name: end_date
+          in: path
+          description: Дата конца в формате 'YYYY-MM-DD'
+          required: true
+          type: string
+        - name: warehouse
+          in: path
+          description: Имя склада
+          required: true
+          type: string
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
         500:
           description: Ошибка на сервере
         404:

@@ -4,6 +4,7 @@ from src.utils.format_reporting import FormatReporting
 from src.utils.settings_manager import SettingsManager
 from src.models.settings_model import SettingsModel
 from src.utils.castom_exceptions import ArgumentTypeException, UnknownValueException
+from src.utils.event_type import EventType
 
 
 """
@@ -64,3 +65,6 @@ class ReportFactory(AbstractLogic):
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
+
+    def handle_event(self, type: EventType, params):
+        return super().handle_event(type, params)

@@ -1,3 +1,4 @@
+from src.utils.repository_manager import RepositoryManager
 from src.utils.settings_manager import SettingsManager
 from src.utils.start_service import StartService
 from src.utils.data_repository import DataRepository
@@ -8,8 +9,9 @@ class TestDataRepository(unittest.TestCase):
     def test_data_keys(self):
         data_repository = DataRepository()
         settings_manager = SettingsManager()
-        settings = settings_manager.settings
-        service = StartService(data_repository, settings)
+        repository = DataRepository()
+        repository_manager = RepositoryManager(repository, settings_manager)
+        service = StartService(repository, settings_manager, repository_manager)
         service.create()
 
         assert data_repository.nomenclature_key() in data_repository.data
@@ -20,8 +22,9 @@ class TestDataRepository(unittest.TestCase):
     def test_data_values(self):
         data_repository = DataRepository()
         settings_manager = SettingsManager()
-        settings = settings_manager.settings
-        service = StartService(data_repository, settings)
+        repository = DataRepository()
+        repository_manager = RepositoryManager(repository, settings_manager)
+        service = StartService(repository, settings_manager, repository_manager)
         service.create()
 
         assert len(data_repository.data[data_repository.nomenclature_key()]) > 0

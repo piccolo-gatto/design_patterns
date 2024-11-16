@@ -1,3 +1,4 @@
+from src.utils.repository_manager import RepositoryManager
 from src.utils.settings_manager import SettingsManager
 from src.utils.start_service import StartService
 from src.utils.data_repository import DataRepository
@@ -11,8 +12,8 @@ from time import time
 class TestWarehouse(unittest.TestCase):
     data_repository = DataRepository()
     settings_manager = SettingsManager()
-    settings = settings_manager.settings
-    service = StartService(data_repository, settings)
+    repository_manager = RepositoryManager(data_repository, settings_manager)
+    service = StartService(data_repository, settings_manager, repository_manager)
     service.create()
 
     def test_data_keys(self):

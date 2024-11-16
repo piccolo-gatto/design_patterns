@@ -1,4 +1,5 @@
 import re
+import uuid
 from src.models.recipe_model import RecipeModel
 from src.abstract_models.abstract_logic import AbstractLogic
 from src.models.nomenclature_model import NomenclatureModel
@@ -9,7 +10,7 @@ from src.models.nomenclature_group_model import NomenclatureGroupModel
 from src.utils.event_type import EventType
 
 class RecipeManager(AbstractLogic):
-    __file_name: str = "../data/recipe1.md"
+    __file_name: str = "data/recipe1.md"
     __recipe: RecipeModel = None
 
     """
@@ -20,6 +21,7 @@ class RecipeManager(AbstractLogic):
         if file_name != "":
             self.__file_name = file_name
         self.__recipe = RecipeModel()
+        self.__recipe.unique_code = uuid.uuid1().hex
         self.__recipe.ingredients = []
         self.__recipe.process = []
         with open(self.__file_name, 'r') as f:
@@ -34,6 +36,8 @@ class RecipeManager(AbstractLogic):
                 cols = row.split('|')
                 nomen = NomenclatureModel()
                 ingredient = IngredientModel()
+                ingredient.unique_code = uuid.uuid1().hex
+                nomen.unique_code = uuid.uuid1().hex
                 nomen.name = ingredient.name = cols[1].strip()
                 measurement = MeasurementModel()
                 count, measurement.name = cols[2].strip().split(" ")

@@ -2,7 +2,7 @@ import json
 from src.utils.format_reporting import FormatReporting
 from src.abstract_models.abstract_report import AbstractReport
 from src.utils.castom_exceptions import ArgumentTypeException, EmptyException
-
+from datetime import datetime
 """
 Ответ формирует набор данных в формате Json
 """
@@ -38,5 +38,7 @@ class JSONReport(AbstractReport):
                 for val in value:
                     row_data[field].append(JSONReport.serialize(val))
             else:
+                if type(value) == datetime:
+                    value = str(value)
                 row_data[field] = value
         return row_data

@@ -8,7 +8,7 @@ class WarehouseBlockedTurnoverProcess(AbstractProcess):
     def process(self, transactions: list):
         turnovers = {}
         for transaction in transactions:
-            key = (transaction.warehouse.unique_code, transaction.nomenclature.unique_code, transaction.measurement.unique_code)
+            key = (transaction.warehouse.name, transaction.nomenclature.name, transaction.measurement.name)
             if transaction.date >= self.block_period:
                 if key not in turnovers:
                     turnovers[key] = WarehouseTurnoverModel()
