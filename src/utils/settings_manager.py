@@ -89,7 +89,8 @@ class SettingsManager(AbstractLogic):
         data.report_formats = {
         "CSV": "CSVReport",
         "MARKDOWN": "MDReport",
-        "JSON": "JSONReport"
+        "JSON": "JSONReport",
+        "TBS": "TBSReport"
     }
 
         return data

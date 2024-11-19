@@ -8,6 +8,7 @@ from src.models.recipe_model import RecipeModel
 from src.models.nomenclature_group_model import NomenclatureGroupModel
 from src.utils.settings_manager import SettingsManager
 from src.utils.castom_exceptions import EmptyException
+from src.utils.repository_manager import RepositoryManager
 
 
 """
@@ -23,7 +24,8 @@ class EmptyModel():
 class TestReporting(unittest.TestCase):
     manager = SettingsManager()
     repository = DataRepository()
-    service = StartService(repository, manager)
+    repository_manager = RepositoryManager(repository, manager)
+    service = StartService(repository, manager, repository_manager)
     service.create()
 
 
@@ -32,7 +34,7 @@ class TestReporting(unittest.TestCase):
     """
     def test_nomenclature_reports(self):
         report = JSONDeserialization(NomenclatureModel)
-        report.get_objects('reports/nomenclature_report.json')
+        report.open_report('reports/nomenclature_report.json')
         data = self.repository.data[self.repository.nomenclature_key()]
 
         assert len(report.objects) == len(data)
@@ -46,7 +48,7 @@ class TestReporting(unittest.TestCase):
     """
     def test_nomenclature_group_reports(self):
         report = JSONDeserialization(NomenclatureGroupModel)
-        report.get_objects('reports/nomenclature_group_report.json')
+        report.open_report('reports/nomenclature_group_report.json')
         data = self.repository.data[self.repository.nomenclature_group_key()]
 
         assert len(report.objects) == len(data)
@@ -60,7 +62,7 @@ class TestReporting(unittest.TestCase):
     """
     def test_measurement_reports(self):
         report = JSONDeserialization(MeasurementModel)
-        report.get_objects('reports/measurement_report.json')
+        report.open_report('reports/measurement_report.json')
         data = self.repository.data[self.repository.measurement_key()]
 
         assert len(report.objects) == len(data)
@@ -74,7 +76,7 @@ class TestReporting(unittest.TestCase):
     """
     def test_recipe_reports(self):
         report = JSONDeserialization(RecipeModel)
-        report.get_objects('reports/recipe_report.json')
+        report.open_report('reports/recipe_report.json')
         data = self.repository.data[self.repository.recipe_key()]
 
         assert len(report.objects) == len(data)

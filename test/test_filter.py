@@ -2,6 +2,7 @@ import unittest
 from src.logics.domain_prototype import DomainPrototype
 from src.dto.filter import FilterDTO
 from src.utils.data_repository import DataRepository
+from src.utils.repository_manager import RepositoryManager
 from src.utils.settings_manager import SettingsManager
 from src.utils.start_service import StartService
 
@@ -11,7 +12,8 @@ from src.utils.start_service import StartService
 class TestFilter(unittest.TestCase):
     manager = SettingsManager()
     repository = DataRepository()
-    service = StartService(repository, manager)
+    repository_manager = RepositoryManager(repository, manager)
+    service = StartService(repository, manager, repository_manager)
     service.create()
 
     def test_filter_name_equals(self):

@@ -1,5 +1,7 @@
 import unittest
 import os
+
+from src.utils.repository_manager import RepositoryManager
 from src.utils.start_service import StartService
 from src.utils.data_repository import DataRepository
 from src.reports.report_factory import ReportFactory
@@ -24,7 +26,8 @@ class TestReporting(unittest.TestCase):
     def test_csv_reports(self):
         manager = SettingsManager()
         repository = DataRepository()
-        service = StartService(repository, manager)
+        repository_manager = RepositoryManager(repository, manager)
+        service = StartService(repository, manager, repository_manager)
         service.create()
         reports = {}
 
@@ -58,7 +61,8 @@ class TestReporting(unittest.TestCase):
     def test_md_reports(self):
         manager = SettingsManager()
         repository = DataRepository()
-        service = StartService(repository, manager)
+        repository_manager = RepositoryManager(repository, manager)
+        service = StartService(repository, manager, repository_manager)
         service.create()
         reports = {}
 
@@ -93,7 +97,8 @@ class TestReporting(unittest.TestCase):
     def test_json_reports(self):
         manager = SettingsManager()
         repository = DataRepository()
-        service = StartService(repository, manager)
+        repository_manager = RepositoryManager(repository, manager)
+        service = StartService(repository, manager, repository_manager)
         service.create()
         reports = {}
 
@@ -127,7 +132,8 @@ class TestReporting(unittest.TestCase):
     def test_xml_reports(self):
         manager = SettingsManager()
         repository = DataRepository()
-        service = StartService(repository, manager)
+        repository_manager = RepositoryManager(repository, manager)
+        service = StartService(repository, manager, repository_manager)
         service.create()
         reports = {}
 
@@ -162,7 +168,8 @@ class TestReporting(unittest.TestCase):
     def test_rtf_reports(self):
         manager = SettingsManager()
         repository = DataRepository()
-        service = StartService(repository, manager)
+        repository_manager = RepositoryManager(repository, manager)
+        service = StartService(repository, manager, repository_manager)
         service.create()
         reports = {}
 

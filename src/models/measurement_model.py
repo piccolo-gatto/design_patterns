@@ -1,3 +1,4 @@
+import uuid
 from src.abstract_models.abstract_reference import AbstractReference
 from src.utils.castom_exceptions import ArgumentTypeException
 
@@ -43,18 +44,21 @@ class MeasurementModel(AbstractReference):
     @staticmethod
     def default_group_gram():
         item = MeasurementModel()
+        item.unique_code = uuid.uuid1().hex
         item.name = "гр"
         return item
 
     @staticmethod
     def default_group_piece():
         item = MeasurementModel()
+        item.unique_code = uuid.uuid1().hex
         item.name = "шт"
         return item
 
     @staticmethod
     def default_group_milliliter():
         item = MeasurementModel()
+        item.unique_code = uuid.uuid1().hex
         item.name = "мл"
         return item
 

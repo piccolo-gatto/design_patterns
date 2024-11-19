@@ -1,4 +1,5 @@
 import random
+import uuid
 from datetime import datetime
 from src.abstract_models.abstract_logic import AbstractLogic
 from src.utils.data_repository import DataRepository
@@ -12,6 +13,8 @@ from src.models.recipe_model import RecipeModel
 from src.utils.settings_manager import SettingsManager
 from src.models.settings_model import SettingsModel
 from src.utils.event_type import EventType
+from src.utils.repository_manager import RepositoryManager
+from src.utils.observe_service import ObserveService
 
 """
 Сервис для реализации первого старта приложения
@@ -21,13 +24,14 @@ from src.utils.event_type import EventType
 class StartService(AbstractLogic):
     __reposity: DataRepository = None
     __settings_manager: SettingsManager = None
+    __repository_manager: RepositoryManager = None
 
-    def __init__(self, reposity: DataRepository, manager: SettingsManager) -> None:
+    def __init__(self, reposity: DataRepository, manager: SettingsManager, repository_manager: RepositoryManager) -> None:
         super().__init__()
-        # validator.validate(reposity, data_reposity)
-        # validator.validate(manager, settings_manager)
         self.__reposity = reposity
         self.__settings_manager = manager
+        self.__repository_manager = repository_manager
+        ObserveService.append(self)
 
     """
     Текущие настройки
@@ -67,7 +71,7 @@ class StartService(AbstractLogic):
         manager = RecipeManager()
         manager.open()
         list.append(manager.recipe)
-        manager.open("../data/recipe2.md")
+        manager.open("data/recipe2.md")
         list.append(manager.recipe)
         self.__reposity.data[DataRepository.recipe_key()] = list
 
@@ -102,6 +106,7 @@ class StartService(AbstractLogic):
         for i in range(200):
             for nomenclature in self.__reposity.data[DataRepository.nomenclature_key()]:
                 transaction = WarehouseTransactionModel()
+                transaction.unique_code = uuid.uuid1().hex
                 transaction.nomenclature = nomenclature
                 transaction.measurement = nomenclature.measurement
                 transaction.warehouse = random.choice([WarehouseModel.default_warehouse_leninsky(), WarehouseModel.default_warehouse_sverdlovsk()])
@@ -120,12 +125,15 @@ class StartService(AbstractLogic):
     """
 
     def create(self):
-        self.__create_nomenclature_groups()
-        self.__create_measurements()
-        self.__create_recipes()
-        self.__create_nomenclature()
-        self.__create_warehouses()
-        self.__create_transactions()
+        if self.__settings_manager.settings.first_start:
+            self.__create_nomenclature_groups()
+            self.__create_measurements()
+            self.__create_recipes()
+            self.__create_nomenclature()
+            self.__create_warehouses()
+            self.__create_transactions()
+        else:
+            self.__repository_manager.load_data()
 
     """
     Перегрузка абстрактного метода

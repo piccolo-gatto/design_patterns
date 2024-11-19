@@ -1,3 +1,4 @@
+import uuid
 from src.abstract_models.abstract_reference import AbstractReference
 from src.utils.castom_exceptions import ArgumentTypeException
 
@@ -31,14 +32,16 @@ class WarehouseModel(AbstractReference):
     @staticmethod
     def default_warehouse_sverdlovsk():
         item = WarehouseModel()
-        item.name = "Склад Свердловский"
+        item.unique_code = uuid.uuid1().hex
+        item.name = "swerdlovsky"
         item.address = "ул. Майская, 3"
         return item
 
     @staticmethod
     def default_warehouse_leninsky():
         item = WarehouseModel()
-        item.name = "Склад Ленинский"
+        item.unique_code = uuid.uuid1().hex
+        item.name = "leninsky"
         item.address = "ул. Промышленная, 21"
         return item
 

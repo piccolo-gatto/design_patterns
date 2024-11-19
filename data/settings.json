@@ -12,7 +12,8 @@
     "report_formats": {
       "CSV": "CSVReport",
       "MARKDOWN": "MDReport",
-      "JSON": "JSONReport"
+      "JSON": "JSONReport",
+      "TBS": "TBSReport"
     },
     "unique_code": "e1c9ec25993711ef88df70a8d3344cb0"
   }

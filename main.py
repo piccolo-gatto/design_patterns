@@ -11,15 +11,19 @@ from src.logics.transaction_prototype import TransactionPrototype
 from src.dto.transaction_filter import TransactionFilterDTO
 from src.utils.nomenclature_service import NomenclatureService
 from src.process.warehouse_turnover_process import WarehouseTurnoverProcess
-from src.models.nomenclature_model import NomenclatureModel
 from src.utils.observe_service import ObserveService
 from src.utils.event_type import EventType
+from src.process.process_factory import ProcessFactory
+from src.utils.json_deserialization import JSONDeserialization
+from src.utils.repository_manager import RepositoryManager
 
 app = connexion.FlaskApp(__name__)
 
 manager = SettingsManager()
 repository = DataRepository()
-service = StartService(repository, manager)
+
+repository_manager = RepositoryManager(repository, manager)
+service = StartService(repository, manager, repository_manager)
 service.create()
 nomenclature_service = NomenclatureService(repository)
 data = repository.data.keys()
@@ -104,11 +108,11 @@ def turnovers():
     report.create(result)
     return report.result
 
-@app.route("/block_period", methods=["GET"])
+@app.route("/api/block_period", methods=["GET"])
 def block_period():
     return {"block_period": manager.settings.block_period}
 
-@app.route("/new_block_period", methods=["POST"])
+@app.route("/api/new_block_period", methods=["POST"])
 def new_block_period():
     new_block_period = request.get_json()["block_period"]
     manager.settings.block_period = new_block_period
@@ -117,31 +121,97 @@ def new_block_period():
 
 @app.route('/api/nomenclature/get', methods=['GET'])
 def get_nomenclature():
-    result = nomenclature_service.get_nomenclature(request.json)
+    result = nomenclature_service.from_dict(request.json).get_nomenclature()
     report = ReportFactory(manager).create_default()
     report.create(list(result))
-    return report.result, 200
+    return Response(report.result, 200)
 
 @app.route('/api/nomenclature/add', methods=['PUT'])
 def add_nomenclature():
-    result = NomenclatureService.add_nomenclature(request.json)
-
+    result = nomenclature_service.from_dict(request.json).add_nomenclature(request.json)
     report = ReportFactory(manager).create_default()
     report.create([result])
-    return report.result, 200
+    return Response(report.result, 200)
 
 
 @app.route('/api/nomenclature/update', methods=['PATCH'])
 def update_nomenclature():
-    statuses = ObserveService.raise_event(EventType.CHANGE_NOMENCLATURE, request.json)
+    statuses = ObserveService.raise_event(EventType.CHANGE_NOMENCLATURE, nomenclature_service.from_dict(request.json))
     status = statuses[type(NomenclatureService).__name__]
-    return status, 200
+    return Response(status, 200)
 
 @app.route('/api/nomenclature/delete', methods=['DELETE'])
 def delete_nomenclature():
-    statuses = ObserveService.raise_event(EventType.DELETE_NOMENCLATURE, request.json)
+    statuses = ObserveService.raise_event(EventType.DELETE_NOMENCLATURE, nomenclature_service.from_dict(request.json))
     status = statuses[type(NomenclatureService).__name__]
-    return status, 200
+    return Response(status, 200)
+
+@app.route("/api/save_data", methods=["POST"])
+def save_data():
+    try:
+        ObserveService.raise_event(EventType.SAVE_DATA, None)
+        return Response("Данные успешно сохранены в файл!", 200)
+    except Exception as e:
+        return Response(str(e), 500)
+
+@app.route("/api/load_data", methods=["POST"])
+def load_data():
+    try:
+        ObserveService.raise_event(EventType.LOAD_DATA, None)
+        return Response("Данные успешно загружены из файла!", 200)
+    except Exception as e:
+        return Response(str(e), 500)
+
+@app.route("/api/tbs/<start_date>/<end_date>/<warehouse>", methods=["GET"])
+def get_tbs_report(start_date, end_date, warehouse):
+        if not start_date or not end_date or not warehouse:
+            return Response("Необходимо указать 'Дата начала', 'Дата окончания' и 'Склад'.", status=400)
+        if not transactions:
+            return Response("Нет данных", 400)
+        filter_before = {
+            "warehouse": {
+                "name": warehouse,
+                "unique_code": "",
+                "type": "equals"},
+            "nomenclature": {
+                "name": "",
+                "unique_code": "",
+                "type": "equals"},
+            "start_period": "1900-01-01",
+            "end_period": start_date
+        }
+        filter = TransactionFilterDTO().from_dict(filter_before)
+        f_data = repository.data['transaction']
+
+        prototype = TransactionPrototype(f_data)
+        filtered_data = prototype.create(f_data, filter)
+        if not filtered_data.data:
+            return Response("Данных нет", 404)
+        process = WarehouseTurnoverProcess()
+        process.block_period = manager.settings.block_period
+        result_before = process.process(filtered_data.data)
+        filter_between = {
+            "warehouse": {
+                "name": warehouse,
+                "unique_code": "",
+                "type": "equals"},
+            "nomenclature": {
+                "name": "",
+                "unique_code": "",
+                "type": "equals"},
+            "start_period": start_date,
+            "end_period": end_date
+        }
+        filter = TransactionFilterDTO().from_dict(filter_between)
+        filtered_data = prototype.create(f_data, filter)
+        if not filtered_data.data:
+            return Response("Данных нет", 404)
+        result_between = process.process(filtered_data.data)
+        turnover_data = [result_before, result_between]
+
+        report = ReportFactory(manager).create(FormatReporting.TBS)
+        report.create(turnover_data)
+        return Response(report.result, 200)
 
 if __name__ == '__main__':
     app.add_api("swagger.yaml")
