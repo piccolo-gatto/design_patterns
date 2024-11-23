@@ -92,7 +92,9 @@ class SettingsManager(AbstractLogic):
         "JSON": "JSONReport",
         "TBS": "TBSReport"
     }
-
+        data.log_to_console = "True"
+        data.log_to_file = "True"
+        data.log_file_path = "log.txt"
         return data
 
     def report_type(self, format: FormatReporting = None):

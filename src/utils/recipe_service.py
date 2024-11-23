@@ -13,6 +13,8 @@ class RecipeService(AbstractLogic):
         recipes = self.__repository.data(DataRepository.recipe_key(), [])
         for recipe in recipes:
             data.update_nomenclature_in_models(recipe)
+            ObserveService.raise_event(EventType.INFO_LOG, "Номенклатура внутри рецепта обновлена")
+            ObserveService.raise_event(EventType.DEBUG_LOG, recipe)
         return {"status": "Рецепты успешно обновлены"}
 
     def handle_event(self, type: EventType, params):

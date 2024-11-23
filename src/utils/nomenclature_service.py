@@ -23,6 +23,7 @@ class NomenclatureService(AbstractLogic):
 
     def get_nomenclature(self):
         if self.__unique_code == "":
+            ObserveService.raise_event(EventType.ERROR_LOG, "Отсутствует unique_code")
             raise EmptyException()
 
         filter = FilterDTO()
@@ -34,6 +35,7 @@ class NomenclatureService(AbstractLogic):
 
     def add_nomenclature(self):
         if self.__unique_code == "":
+            ObserveService.raise_event(EventType.ERROR_LOG, "Отсутствует unique_code")
             raise EmptyException()
 
         nomenclature = NomenclatureModel()
@@ -43,6 +45,7 @@ class NomenclatureService(AbstractLogic):
 
     def update_nomenclature(self):
         if self.__unique_code == "":
+            ObserveService.raise_event(EventType.ERROR_LOG, "Отсутствует unique_code")
             raise EmptyException()
 
         filter = FilterDTO()
@@ -50,6 +53,7 @@ class NomenclatureService(AbstractLogic):
         filter.type = FilterType.EQUALS.value
 
         if not self.filter_data(filter)[0]:
+            ObserveService.raise_event(EventType.ERROR_LOG, "Данные не найдены")
             return EmptyException()
         self.data_to_nomenclature(self.filter_data(filter)[0])
 
@@ -60,6 +64,7 @@ class NomenclatureService(AbstractLogic):
 
     def delete_nomenclature(self):
         if self.__unique_code == "":
+            ObserveService.raise_event(EventType.ERROR_LOG, "Отсутствует unique_code")
             raise EmptyException()
 
         filter = FilterDTO()
@@ -68,9 +73,11 @@ class NomenclatureService(AbstractLogic):
         nomenclature = next(iter(self.filter_data(filter)), None)
 
         if not nomenclature:
+            ObserveService.raise_event(EventType.ERROR_LOG, "Отсутствует nomenclature")
             raise EmptyException()
 
         if self.find_data(nomenclature, DataRepository.recipe_key()) or self.find_data(nomenclature, DataRepository.transaction_key()):
+            ObserveService.raise_event(EventType.ERROR_LOG, "Удаление запрещено! Данная номенклатура используется!")
             raise Exception("Удаление запрещено! Данная номенклатура используется!")
 
         data = []
@@ -100,15 +107,17 @@ class NomenclatureService(AbstractLogic):
             group_filter.type = FilterType.EQUALS.value
             group = next(iter(self.filter_data(group_filter, DataRepository.nomenclature_group_key())), None)
             if not group:
+                ObserveService.raise_event(EventType.ERROR_LOG, "Указанной группы не существует")
                 raise UnknownValueException()
             model.group = group
 
         if self.__measurement_unique_code != "":
-            range_filter = FilterDTO()
-            range_filter.id = self.__measurement_unique_code
-            range_filter.type = FilterType.EQUALS.value
-            range = next(iter(self.filter_data(range_filter, DataRepository.measurement_key())), None)
-            if not range:
+            measurement_filter = FilterDTO()
+            measurement_filter.id = self.__measurement_unique_code
+            measurement_filter.type = FilterType.EQUALS.value
+            measurement = next(iter(self.filter_data(measurement_filter, DataRepository.measurement_key())), None)
+            if not measurement:
+                ObserveService.raise_event(EventType.ERROR_LOG, "Указанной единицы измерения не существует")
                 return UnknownValueException()
             model.range = range
 
@@ -151,6 +160,7 @@ class NomenclatureService(AbstractLogic):
             print(filter.__name)
             return filter
         except Exception as e:
+            ObserveService.raise_event(EventType.ERROR_LOG, e)
             raise e
 
     def set_exception(self, ex: Exception):

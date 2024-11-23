@@ -11,3 +11,6 @@ class EventType(Enum):
     CHANGE_NOMENCLATURE_FROM_TRANSACTION = 5
     LOAD_DATA = 6
     SAVE_DATA = 7
+    INFO_LOG = 8
+    ERROR_LOG = 9
+    DEBUG_LOG = 10

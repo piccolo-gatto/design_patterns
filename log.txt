@@ -1,0 +1,98 @@
+2024-11-23T21:24:48.665703	[DEBUG] /api/reports/formats GET
+2024-11-23T21:24:48.665703	[INFO] Список типов отчётов готов готов
+2024-11-23T21:24:48.665703	[DEBUG] [{'name': 'CSV', 'value': 1}, {'name': 'MARKDOWN', 'value': 2}, {'name': 'JSON', 'value': 3}, {'name': 'XML', 'value': 4}, {'name': 'RTF', 'value': 5}, {'name': 'TBS', 'value': 6}]
+2024-11-23T21:25:14.611814	[DEBUG] /api/reports/measurement/JSON GET
+2024-11-23T21:25:14.611814	[INFO] Отчёт по measurement в формате JSON готов
+2024-11-23T21:25:14.611814	[DEBUG] FormatReporting.JSON
+2024-11-23T21:25:41.522997	[DEBUG] /api/reports/ingredient/JSON GET
+2024-11-23T21:26:36.664874	[DEBUG] /api/reports/ingredient/JSON GET
+2024-11-23T21:26:36.664874	[ERROR] Указанная категория данных отсутствует!
+2024-11-23T21:36:33.649185	[DEBUG] /api/save_data POST
+2024-11-23T21:36:33.805105	[INFO] Данные успешно сохранены в файл
+2024-11-23T21:39:08.804585	[DEBUG] /api/filter/nomenclature POST
+2024-11-23T21:39:08.805587	[INFO] Отчёт по категории nomenclature с применением фильтров готов
+2024-11-23T21:39:08.805587	[DEBUG] [
+  {
+    "full_name": "",
+    "group": {
+      "name": "Сырье",
+      "unique_code": "3249f9aca9a011efab3370a8d3344cb0"
+    },
+    "measurement": {
+      "base": null,
+      "coefficient": 1,
+      "name": "гр",
+      "unique_code": "322f45b0a9a011ef929170a8d3344cb0"
+    },
+    "name": "Сливочное масло",
+    "unique_code": "3249f9aba9a011ef840570a8d3344cb0"
+  },
+  {
+    "full_name": "",
+    "group": {
+      "name": "Сырье",
+      "unique_code": "3249f9b2a9a011efb88d70a8d3344cb0"
+    },
+    "measurement": {
+      "base": null,
+      "coefficient": 1,
+      "name": "гр",
+      "unique_code": "322f45b0a9a011ef929170a8d3344cb0"
+    },
+    "name": "Ванилин(щепотка)",
+    "unique_code": "3249f9b1a9a011efb11770a8d3344cb0"
+  },
+  {
+    "full_name": "",
+    "group": {
+      "name": "Сырье",
+      "unique_code": "3249f9bca9a011ef8f0e70a8d3344cb0"
+    },
+    "measurement": {
+      "base": null,
+      "coefficient": 1,
+      "name": "гр",
+      "unique_code": "322f45b0a9a011ef929170a8d3344cb0"
+    },
+    "name": "Соль",
+    "unique_code": "3249f9bba9a011efb86f70a8d3344cb0"
+  },
+  {
+    "full_name": "",
+    "group": {
+      "name": "Сырье",
+      "unique_code": "3249f9c2a9a011ef816f70a8d3344cb0"
+    },
+    "measurement": {
+      "base": null,
+      "coefficient": 1,
+      "name": "мл",
+      "unique_code": "322f45b0a9a011ef929170a8d3344cb0"
+    },
+    "name": "Молоко",
+    "unique_code": "3249f9c1a9a011efa37070a8d3344cb0"
+  }
+]
+2024-11-23T21:39:57.576057	[DEBUG] /api/filter/nomenclature POST
+2024-11-23T21:39:57.576057	[ERROR] Данных нет
+2024-11-23T21:41:33.277783	[DEBUG] /api/new_block_period POST
+2024-11-23T21:41:33.278456	[DEBUG] Дата блокировки 111
+2024-11-23T21:41:33.278456	[ERROR] time data '111' does not match format '%Y-%m-%d'2024-11-23T22:03:55.746598	[DEBUG] /api/reports/formats GET
+2024-11-23T22:03:55.746598	[INFO] Список типов отчётов готов готов
+2024-11-23T22:03:55.746598	[DEBUG] [{'name': 'CSV', 'value': 1}, {'name': 'MARKDOWN', 'value': 2}, {'name': 'JSON', 'value': 3}, {'name': 'XML', 'value': 4}, {'name': 'RTF', 'value': 5}, {'name': 'TBS', 'value': 6}]
+2024-11-23T22:04:19.948892	[DEBUG] /api/reports/nomenclature/CSV GET
+2024-11-23T22:04:19.949894	[INFO] Отчёт по nomenclature в формате CSV готов
+2024-11-23T22:04:19.949894	[DEBUG] FormatReporting.CSV
+2024-11-23T22:04:52.470753	[DEBUG] /api/filter/measurement POST
+2024-11-23T22:04:52.470753	[INFO] Отчёт по категории measurement с применением фильтров готов
+2024-11-23T22:04:52.471753	[DEBUG] [
+  {
+    "base": null,
+    "coefficient": 1,
+    "name": "гр",
+    "unique_code": "ad69b66ea9a311ef91d370a8d3344cb0"
+  }
+]
+2024-11-23T22:10:52.152008	[DEBUG] /api/block_period GET
+2024-11-23T22:10:52.152008	[INFO] Дата блокировки получена
+2024-11-23T22:10:52.152008	[DEBUG] 2024-11-23
