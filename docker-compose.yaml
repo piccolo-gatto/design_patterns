@@ -1,0 +1,26 @@
+version: '1'
+
+services:
+  service1:
+    container_name: service1
+    image: design_patterns
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8080
+    volumes:
+      - ./data/settings.json:/app/settings.json
+      - ./data/logs.txt:/app/logs.txt
+
+  service2:
+    container_name: service2
+    image: design_patterns
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8001:8080
+    volumes:
+      - ./data/settings.json:/app/settings.json
+      - ./data/logs.txt:/app/logs.txt
