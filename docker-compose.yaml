@@ -4,6 +4,9 @@ services:
   service1:
     container_name: service1
     image: design_patterns
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 8000:8080
     volumes:
@@ -13,6 +16,9 @@ services:
   service2:
     container_name: service2
     image: design_patterns
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 8001:8080
     volumes:
